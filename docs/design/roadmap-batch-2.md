@@ -340,15 +340,28 @@ child.on("exit", (code) => process.exit(code ?? 1));
 
 `npx shadow-vision` → 调 `uvx shadow-vision`，环境变量透传由用户在 MCP 配置的 `env` 字段提供（与 PyPI 入口一致）。
 
-npm 发布 CI（`.github/workflows/publish-npm.yml`，tag 触发）：
+npm 发布 CI（`.github/workflows/publish-npm.yml`，tag 触发，OIDC Trusted Publishing）：
 ```yaml
-- uses: actions/setup-node@v4
-  with: { node-version: "22", registry-url: "https://registry.npmjs.org" }
-- working-directory: npm/shadow-vision
-  run: npm publish --access public   # 薄壳无依赖，无需 npm ci
-  env: { NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} }
+name: publish-npm
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  id-token: write   # OIDC Trusted Publishing，无需 NPM_TOKEN
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+      - working-directory: npm/shadow-vision
+        run: npm publish --access public   # 薄壳无依赖，无需 npm ci；OIDC 自动生成 provenance
 ```
-需配 `NPM_TOKEN` GitHub Secret。**可选增强**：npm 支持 OIDC provenance（`npm publish --provenance`，需 setup-node 配 `id-token: write`），非必须，当前 `NPM_TOKEN` 方案可接受；启用 provenance 可提升包可信度。
+**前置（文档说明，非代码）**：在 npm 包后台 `https://www.npmjs.com/package/shadow-vision/access` 配置 Trusted Publisher = GitHub Actions（`WardLu/shadow-vision` + workflow `publish-npm.yml`）。npm 不支持 pending publisher 预认领新包，**首个版本需先以传统方式（本地 `npm publish` + 2FA）发布一次让包存在**，之后才能配 Trusted Publisher，后续版本走 OIDC。
 
 ### 4.4 文档与版本
 
@@ -452,6 +465,7 @@ CI 层 `release-check.yml` 是更强验证（真实 `uv build` + `twine check`�
 | 同模型对比偏差 | `judge_model` 可配裁判模型 | 默认空，v2 可选增强 |
 | 渲染恶意代码 | 默认禁网 + 进程隔离 | 本地 MCP 信任模型输出；v3 可加 site-per-process |
 | PyPI Trusted Publishing 需后台配置 | 文档说明前置步骤 | 代码不依赖 token |
+| npm Trusted Publishing 需后台配置 + 首版本地发布 | 文档说明前置步骤 | OIDC，不依赖 NPM_TOKEN |
 | npm 包名占用 | 备选 `@wardlu/shadow-vision` | 发布前查 npm registry |
 | npm 包装器依赖 uv | `bin.js` ENOENT 给明确提示 | README 说明前置 |
 | 版本号 | 需用户确认 | 设计只建议 0.2.0，不擅自改 |
@@ -469,8 +483,8 @@ CI 层 `release-check.yml` 是更强验证（真实 `uv build` + `twine check`�
 **F2**：
 - [ ] `uv build` 产出合法 wheel/sdist（已通过），`twine check` 待发布 CI 验证
 - [x] `uvx shadow-vision --version` 打印版本（本地 `uv build` 后验证）
-- [ ] `npx shadow-vision` 能调起 `uvx shadow-vision`（需 npm 环境，待发布验证）
-- [ ] tag 触发 publish-pypi + publish-npm 两条 CI（workflow 已就位，待真实 tag 验证）
+- [x] npm 包 `shadow-vision@0.1.0` 已发布（首版本地 `npm publish` + 2FA，随后配 Trusted Publisher）
+- [x] `publish-pypi` 已验证（PyPI 0.1.0 上线）；`publish-npm` 已改 OIDC + Trusted Publisher 已配，后续版本 tag 触发即走 OIDC
 - [x] README 一键安装章节 + CHANGELOG 就位
 - [x] 版本号已确认 `0.2.0`（2026-08-05，三处同步：`__init__.py` + `package.json` + CHANGELOG）
 
@@ -509,7 +523,8 @@ CI 层 `release-check.yml` 是更强验证（真实 `uv build` + `twine check`�
 ### 10.4 P3 细节
 
 5. 渲染截图与原图尺寸不一致可能干扰对比，可选在对比 prompt 提示「忽略尺寸差异、聚焦结构」。
-6. npm 发布可选 OIDC/provenance（非必须，`NPM_TOKEN` 方案可接受）。
+6. npm 发布已采用 OIDC Trusted Publishing（见 §4.2.4），弃用 `NPM_TOKEN`；provenance 由 trusted publishing 自动生成。
 7. 版本号三处同步（`__init__.py` + `package.json` + CHANGELOG）尊重铁律，需用户拍板 `0.2.0`。
 
 > **2026-08-05 实施变更**：PyPI 包名由 `vision-mcp` 改为 `shadow-vision`（`vision-mcp` 已被他人项目占用，见 §10 评审）；`shadow-vision` 为全新包，首个发布版本定为 **0.1.0**（不再延续 0.2.0）。三处版本同步：`vision_mcp/__init__.py` + `npm/shadow-vision/package.json` + `CHANGELOG.md`。
+> **2026-08-06 实施变更**：npm 发布改用 OIDC Trusted Publishing（`.github/workflows/publish-npm.yml` 顶层 `permissions: id-token: write`，弃用 `NPM_TOKEN`）。npm 不支持 pending publisher 预认领新包，`shadow-vision@0.1.0` 首版以本地 `npm publish`（2FA）发布让包存在，随后在 `npmjs.com/package/shadow-vision/access` 配置 Trusted Publisher（GitHub Actions / `WardLu/shadow-vision` / `publish-npm.yml`），后续版本 tag 触发即走 OIDC。PyPI 与 npm 双端 0.1.0 均已上线。
