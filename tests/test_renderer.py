@@ -102,3 +102,19 @@ def test_svg_wrapped_in_html() -> None:
         r.render("<svg><rect/></svg>", "svg")
     page = sp.return_value.chromium.launch.return_value.new_page.return_value
     assert page.goto.call_args.args[0].endswith(".html")
+
+
+
+def test_abort_route_blocks_network_but_allows_file() -> None:
+    """Network requests are aborted, but file:// local loads continue (regression)."""
+    net = Mock()
+    net.request.url = "https://cdn.example.com/lib.js"
+    renderer._abort_route(net)
+    net.abort.assert_called_once()
+    net.continue_.assert_not_called()
+
+    local = Mock()
+    local.request.url = "file:///tmp/render.html"
+    renderer._abort_route(local)
+    local.continue_.assert_called_once()
+    local.abort.assert_not_called()

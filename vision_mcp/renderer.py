@@ -86,7 +86,11 @@ def _wrap_html(code: str, target_format: str) -> str:
 
 
 def _abort_route(route) -> None:
-    route.abort()
+    # Only block network requests; allow file:// (local page/assets) to load.
+    if route.request.url.startswith(("http://", "https://")):
+        route.abort()
+    else:
+        route.continue_()
 
 
 class PlaywrightRenderer(Renderer):
