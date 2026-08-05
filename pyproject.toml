@@ -17,3 +17,6 @@ packages = ["vision_mcp"]
 
 [tool.uv]
 package = true
+
+[dependency-groups]
+dev = ["pytest"]
