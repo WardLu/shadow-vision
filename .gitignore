@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.env
+/ROADMAP.md
+
+# Local editor / MCP configuration contains machine-specific absolute paths.
+.mcp.json
+.cursor/
+.vscode/
+.windsurf/
+
+# Local preview and browser artifacts.
+.playwright-mcp/
+preview/
+*-preview.png
