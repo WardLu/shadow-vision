@@ -53,7 +53,7 @@ class OpenAICompatiblePayloadTests(unittest.TestCase):
         response.json.return_value = {"choices": [{"message": {"content": "ok"}}]}
 
         with patch("vision_mcp.backends.httpx.post", return_value=response) as post:
-            result = OpenAICompatibleBackend(config).analyze("prompt", "image", "image/png", "vision-model")
+            result = OpenAICompatibleBackend(config).analyze("prompt", [(b"image", "image/png")], "vision-model")
 
         self.assertEqual(result, "ok")
         payload = post.call_args.kwargs["json"]
@@ -66,7 +66,7 @@ class OpenAICompatiblePayloadTests(unittest.TestCase):
         response.json.return_value = {"choices": [{"message": {"content": "ok"}}]}
 
         with patch("vision_mcp.backends.httpx.post", return_value=response) as post:
-            OpenAICompatibleBackend(config).analyze("prompt", "image", "image/png", "vision-model")
+            OpenAICompatibleBackend(config).analyze("prompt", [(b"image", "image/png")], "vision-model")
 
         payload = post.call_args.kwargs["json"]
         self.assertNotIn("max_tokens", payload)

@@ -4,14 +4,14 @@
 
 # 影瞳 · Shadow Vision
 
-给纯文本 LLM 添加一双眼睛。影瞳是一个开源 MCP 视觉服务，让 AI Agent 通过 `vision_ocr` 与 `vision_inspect` 看见、理解并分析真实世界的信息，无需切换宿主文本模型。
+给纯文本 LLM 添加一双眼睛。影瞳是一个开源 MCP 视觉服务，让 AI Agent 通过 `vision_ocr` / `vision_inspect` / `vision_annotate` / `vision_layout` / `vision_reconstruct` / `vision_compare` 看见、理解并分析真实世界的信息，无需切换宿主文本模型。
 
 ## 为什么不同
 
 - **MCP 原生**：适配 Codex、Claude Desktop、Cursor 及其他 MCP 客户端
 - **可插拔后端**：Ollama、OpenAI-compatible、Anthropic、Gemini
 - **本地优先**：使用 Ollama 时图片和推理都可以留在本机
-- **输入简单**：支持本地文件路径或 base64 图片数据
+- **输入多样**：支持本地文件路径、base64 图片数据或远程 HTTP(S) URL
 
 ## 工作原理
 
@@ -23,7 +23,28 @@
 
 ## 快速开始
 
-### 1. 安装
+### 0. 一键运行（免 clone）
+
+不需要 clone 仓库，直接运行：
+
+```bash
+uvx vision-mcp          # Python / uv 用户（推荐）
+# 或 Node 习惯用户
+npx shadow-vision       # 需本机已装 uv
+```
+
+MCP 配置示例：
+
+```toml
+[mcp_servers.vision]
+command = "uvx"
+args = ["vision-mcp"]
+env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b" }
+```
+
+> `npx shadow-vision` 是一个薄壳，内部调用 `uvx vision-mcp`，需要本机已安装 [uv](https://docs.astral.sh/uv/)。两种入口行为一致。
+
+### 1. 源码安装（开发 / 自托管）
 
 需要 Python 3.11+ 与 [uv](https://docs.astral.sh/uv/)：
 
@@ -92,7 +113,30 @@ env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "服务端提供的
 |---|---|---|
 | `VISION_BACKEND` | `ollama` | `ollama` / `openai_compatible` / `anthropic` / `gemini` |
 | `VISION_MODEL` | `qwen3-vl:2b` | 视觉模型名称 |
-| `VISION_TIMEOUT` | `180` | 请求超时（秒） |
+| `VISION_TIMEOUT` | `180` | 读取超时（秒），`VISION_READ_TIMEOUT` 的兼容别名 |
+| `VISION_CONNECT_TIMEOUT` | `10` | 连接超时（秒） |
+| `VISION_READ_TIMEOUT` | `180` | 读取超时（秒） |
+| `VISION_MAX_RETRIES` | `2` | 瞬时失败/5xx 的重试次数（总请求 = 1 + 此值） |
+| `VISION_RETRY_BASE_DELAY` | `1.0` | 指数退避基础秒数 |
+
+### 高级配置（图片与安全）
+
+| 变量 | 默认值 | 说明 |
+|---|---|---|
+| `VISION_AUTO_COMPRESS` | `true` | 是否自动压缩大图 |
+| `VISION_MAX_LONG_EDGE` | `1800` | 压缩阈值：长边像素 |
+| `VISION_MAX_PIXELS` | `3500000` | 压缩阈值：总像素 |
+| `VISION_COMPRESS_QUALITY` | `85` | JPEG 重编码质量 |
+| `VISION_AUTO_TILE` | `true` | 是否对超长图自动切块 |
+| `VISION_TILE_LONG_EDGE` | `3600` | 切块阈值：长边像素 |
+| `VISION_TILE_OVERLAP` | `100` | 切块重叠像素 |
+| `VISION_MAX_TILES` | `8` | 单图切块数上限 |
+| `VISION_TASK_ROUTING` | `true` | 是否启用 `vision_inspect` 启发式任务路由 |
+| `VISION_ALLOW_REMOTE_URL` | `true` | 是否启用远程 URL 图片输入 |
+| `VISION_MAX_REMOTE_SIZE` | `20971520` | 远程图片最大字节数（20MB） |
+| `VISION_FETCH_TIMEOUT` | `30` | 远程获取超时（秒） |
+| `VISION_SSRF_ALLOW_PRIVATE` | `false` | 是否允许私网/内网地址（强烈不建议开启） |
+| `VISION_MAX_BATCH_IMAGES` | `5` | `vision_compare` 单次最多图片数 |
 
 ### Ollama
 
@@ -140,10 +184,46 @@ vision_ocr(image_path="/tmp/receipt.png")
 vision_inspect(image_path="/tmp/design.png", question="List any UI bugs you see.")
 ```
 
-两个工具都支持：
+两个工具还支持：
 
+- `task`：可选任务提示（`vision_ocr`: `general`/`error`/`table`；`vision_inspect`: `general`/`ui_structure`/`ui_bug`/`chart`）
 - `image_path`：服务器可读的本地图片路径
 - `image_base64` + `mime_type`：base64 编码的图片数据
+- `image_url`：远程 HTTP(S) 图片 URL（自动做 SSRF 防护）
+
+所有图片工具都支持 `image_path` / `image_base64` / `image_url` 三选一输入，优先级：`image_base64` > `image_path` > `image_url`。
+
+### `vision_annotate`
+
+识别圈选、箭头、下划线、荧光、涂改、手写文字等标注，输出 `annotation → target` 关系、类型、位置与置信度的结构化 JSON：
+
+```python
+vision_annotate(image_path="/tmp/marked.png", focus="按圈选顺序说明改动点")
+```
+
+### `vision_layout`
+
+分析图片/界面布局结构，输出画布、容器、元素 `bbox`、文字样式及元素关系的结构化 JSON：
+
+```python
+vision_layout(image_path="/tmp/ui.png")
+```
+
+### `vision_reconstruct`
+
+把截图复刻为代码（`html` / `react` / `svg`），生成代码并附模型自检；可选传入 `vision_layout` 的 JSON 作为布局参考：
+
+```python
+vision_reconstruct(image_path="/tmp/ui.png", target_format="html", reference_layout="<layout json>")
+```
+
+### `vision_compare`
+
+一次调用分析多张关联图片（`diff` / `compare` / `sequence`），每张图支持 `label` 便于引用：
+
+```python
+vision_compare(images=[{"image_path": "/tmp/a.png", "label": "改前"}, {"image_path": "/tmp/b.png", "label": "改后"}], task="diff")
+```
 
 ## 本地模型选择与测评
 
@@ -189,7 +269,7 @@ time ollama run "$MODEL" "$IMAGE" "请描述图片内容，并列出你不确定
 ```bash
 uv sync
 uv run python -c "import vision_mcp.server; print('ok')"
-python -m unittest discover -s tests -v
+uv run pytest
 ```
 
 ## 联系我

@@ -1,12 +1,32 @@
 [project]
 name = "vision-mcp"
-version = "0.1.0"
-description = "Local vision MCP server with pluggable backends (Ollama, OpenAI-compatible, Anthropic, Gemini)"
+description = "Local vision MCP server with pluggable backends (Ollama, OpenAI-compatible, Anthropic, Gemini), OCR, inspection, annotation, layout, reconstruction and comparison."
 requires-python = ">=3.11"
-dependencies = ["mcp>=1.0.0", "httpx[socks]>=0.27.0"]
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Ward Lu", email = "wardlu@126.com" }]
+keywords = ["mcp", "vision", "ocr", "ollama", "claude", "gemini"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dynamic = ["version"]
+dependencies = ["mcp>=1.0.0", "httpx[socks]>=0.27.0", "Pillow>=10.0.0"]
+
+[project.optional-dependencies]
+render = ["playwright>=1.40.0"]
 
 [project.scripts]
 vision-mcp = "vision_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/WardLu/shadow-vision"
+Repository = "https://github.com/WardLu/shadow-vision"
+Issues = "https://github.com/WardLu/shadow-vision/issues"
 
 [build-system]
 requires = ["hatchling"]
@@ -14,6 +34,10 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["vision_mcp"]
+
+[tool.hatch.version]
+source = "regex"
+path = "vision_mcp/__init__.py"
 
 [tool.uv]
 package = true
