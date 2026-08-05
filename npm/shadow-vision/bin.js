@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { spawn } = require("node:child_process");
-const child = spawn("uvx", ["vision-mcp", ...process.argv.slice(2)], {
+const child = spawn("uvx", ["shadow-vision", ...process.argv.slice(2)], {
   stdio: "inherit",
 });
 child.on("error", (err) => {

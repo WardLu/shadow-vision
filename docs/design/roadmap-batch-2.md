@@ -13,7 +13,7 @@
 | 编号 | 需求 | ROADMAP 分档 | 目标 |
 |---|---|---|---|
 | R2-v2 | 截图复刻闭环渲染 | 近期（v2 增强） | 生成代码后用 Playwright 渲染截图，与原图视觉对比并迭代修正 |
-| F2 | npm/PyPI 一键分发 | 远期 | `uvx vision-mcp` / `npx shadow-vision` 即装即用，免 clone |
+| F2 | npm/PyPI 一键分发 | 远期 | `uvx shadow-vision` / `npx shadow-vision` 即装即用，免 clone |
 
 两者独立，可并行实现，无相互依赖。
 
@@ -40,7 +40,7 @@ elif params.name == "vision_reconstruct":
 - **`_load_images(config, args, tile=...)`**（`backends.py:190`）：归一 image_path/base64/url 到 `[(bytes, mime, meta)]`。闭环里渲染截图是 `bytes`，可直接拼成 `[(render_bytes, "image/png")]` 喂给 `analyze`。
 - **`Config` frozen dataclass**（`config.py:24`）：加字段即加环境变量，模式成熟。
 - **`[render]` extras**（`pyproject.toml:9`）：`playwright>=1.40.0` 已声明但未被代码使用，本批次落地。
-- **`pyproject.toml`**：hatchling 后端 + `vision-mcp` script entry + 静态 `version = "0.1.0"`。
+- **`pyproject.toml`**：hatchling 后端 + `shadow-vision` script entry + 静态 `version = "0.1.0"`。
 
 ### 2.3 约束
 
@@ -204,10 +204,10 @@ tests/
 
 | 入口 | 命令 | 受众 | 实现 |
 |---|---|---|---|
-| PyPI 主入口 | `uvx vision-mcp` | Python/uv 用户（地道） | PyPI 发布 `vision-mcp` 包 |
-| npm 薄壳 | `npx shadow-vision` | Node 生态习惯用户（对齐 luma `npx -y`） | npm 包调 `uvx vision-mcp` |
+| PyPI 主入口 | `uvx shadow-vision` | Python/uv 用户（地道） | PyPI 发布 `shadow-vision` 包 |
+| npm 薄壳 | `npx shadow-vision` | Node 生态习惯用户（对齐 luma `npx -y`） | npm 包调 `uvx shadow-vision` |
 
-**核心仍是单一 PyPI 包**，npm 是薄壳包装（依赖用户机器已装 uv）。两个包同名策略：PyPI = `vision-mcp`，npm = `shadow-vision`（避免与 PyPI 名冲突，且贴合项目名）。
+**核心仍是单一 PyPI 包**，npm 是薄壳包装（依赖用户机器已装 uv）。两个包同名策略：PyPI = `shadow-vision`，npm = `shadow-vision`（避免与 PyPI 名冲突，且贴合项目名）。
 
 ### 4.2 PyPI 发布
 
@@ -216,7 +216,7 @@ tests/
 当前 `pyproject.toml` 只有最小元数据。补：
 ```toml
 [project]
-name = "vision-mcp"
+name = "shadow-vision"
 description = "..."  # 已有
 readme = "README.md"
 license = "MIT"
@@ -255,7 +255,7 @@ path = "vision_mcp/__init__.py"
 #### 4.2.3 `__version__` 与 `--version`
 
 - `vision_mcp/__init__.py` 暴露 `__version__`。
-- `server.py:main()` 增加最小 CLI：`--version` 打印版本退出；无参数走 MCP 服务。便于发布后验证 `uvx vision-mcp --version`。用 `sys.argv` 简单判断，不引 argparse（保轻量）。
+- `server.py:main()` 增加最小 CLI：`--version` 打印版本退出；无参数走 MCP 服务。便于发布后验证 `uvx shadow-vision --version`。用 `sys.argv` 简单判断，不引 argparse（保轻量）。
 
 #### 4.2.4 发布 CI（Trusted Publishing）
 
@@ -313,7 +313,7 @@ npm/shadow-vision/
 {
   "name": "shadow-vision",
   "version": "0.2.0",
-  "description": "Thin wrapper that runs the vision-mcp Python package via uvx.",
+  "description": "Thin wrapper that runs the shadow-vision Python package via uvx.",
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/WardLu/shadow-vision" },
   "bin": { "shadow-vision": "bin.js" },
@@ -325,7 +325,7 @@ npm/shadow-vision/
 ```javascript
 #!/usr/bin/env node
 const { spawn } = require("node:child_process");
-const child = spawn("uvx", ["vision-mcp", ...process.argv.slice(2)], {
+const child = spawn("uvx", ["shadow-vision", ...process.argv.slice(2)], {
   stdio: "inherit",
 });
 child.on("error", (err) => {
@@ -338,7 +338,7 @@ child.on("error", (err) => {
 child.on("exit", (code) => process.exit(code ?? 1));
 ```
 
-`npx shadow-vision` → 调 `uvx vision-mcp`，环境变量透传由用户在 MCP 配置的 `env` 字段提供（与 PyPI 入口一致）。
+`npx shadow-vision` → 调 `uvx shadow-vision`，环境变量透传由用户在 MCP 配置的 `env` 字段提供（与 PyPI 入口一致）。
 
 npm 发布 CI（`.github/workflows/publish-npm.yml`，tag 触发）：
 ```yaml
@@ -357,14 +357,14 @@ npm 发布 CI（`.github/workflows/publish-npm.yml`，tag 触发）：
 置顶，替代当前「git clone + uv sync」为主入口的写法：
 ```bash
 # 推荐一键运行（免 clone）
-uvx vision-mcp
+uvx shadow-vision
 # 或 Node 习惯
 npx shadow-vision
 
 # MCP 配置示例
 [mcp_servers.vision]
 command = "uvx"
-args = ["vision-mcp"]
+args = ["shadow-vision"]
 env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b" }
 ```
 保留 git clone 方式作为「开发/源码」小节。
@@ -413,7 +413,7 @@ tests/test_packaging.py              # 新增：entry + __version__ + 元数据
 
 | 文件 | 覆盖 | 关键用例 |
 |---|---|---|
-| `test_packaging.py` | 打包元数据 | `vision_mcp.__version__` 非空、`pyproject.toml` 必填字段齐全、script entry `vision-mcp` 可解析、动态版本与 `__init__.py` 一致 |
+| `test_packaging.py` | 打包元数据 | `vision_mcp.__version__` 非空、`pyproject.toml` 必填字段齐全、script entry `shadow-vision` 可解析、动态版本与 `__init__.py` 一致 |
 
 CI 层 `release-check.yml` 是更强验证（真实 `uv build` + `twine check`）。npm 包装器逻辑简单（spawn 透传），可选加 `npm/shadow-vision/test.js` 验证 ENOENT 分支，非必须。
 
@@ -468,8 +468,8 @@ CI 层 `release-check.yml` 是更强验证（真实 `uv build` + `twine check`�
 
 **F2**：
 - [ ] `uv build` 产出合法 wheel/sdist（已通过），`twine check` 待发布 CI 验证
-- [x] `uvx vision-mcp --version` 打印版本（本地 `uv build` 后验证）
-- [ ] `npx shadow-vision` 能调起 `uvx vision-mcp`（需 npm 环境，待发布验证）
+- [x] `uvx shadow-vision --version` 打印版本（本地 `uv build` 后验证）
+- [ ] `npx shadow-vision` 能调起 `uvx shadow-vision`（需 npm 环境，待发布验证）
 - [ ] tag 触发 publish-pypi + publish-npm 两条 CI（workflow 已就位，待真实 tag 验证）
 - [x] README 一键安装章节 + CHANGELOG 就位
 - [x] 版本号已确认 `0.2.0`（2026-08-05，三处同步：`__init__.py` + `package.json` + CHANGELOG）
@@ -511,3 +511,5 @@ CI 层 `release-check.yml` 是更强验证（真实 `uv build` + `twine check`�
 5. 渲染截图与原图尺寸不一致可能干扰对比，可选在对比 prompt 提示「忽略尺寸差异、聚焦结构」。
 6. npm 发布可选 OIDC/provenance（非必须，`NPM_TOKEN` 方案可接受）。
 7. 版本号三处同步（`__init__.py` + `package.json` + CHANGELOG）尊重铁律，需用户拍板 `0.2.0`。
+
+> **2026-08-05 实施变更**：PyPI 包名由 `vision-mcp` 改为 `shadow-vision`（`vision-mcp` 已被他人项目占用，见 §10 评审）；`shadow-vision` 为全新包，首个发布版本定为 **0.1.0**（不再延续 0.2.0）。三处版本同步：`vision_mcp/__init__.py` + `npm/shadow-vision/package.json` + `CHANGELOG.md`。

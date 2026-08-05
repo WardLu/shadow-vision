@@ -1,6 +1,6 @@
 {
   "name": "shadow-vision",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Thin wrapper that runs the vision-mcp Python package via uvx.",
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/WardLu/shadow-vision" },

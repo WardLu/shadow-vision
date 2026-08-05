@@ -205,7 +205,7 @@ def _make_server() -> Server:
                 isError=True,
             )
 
-    server = Server("vision-mcp", version="0.1.0")
+    server = Server("shadow-vision", version=__version__)
     server.add_request_handler("tools/list", PaginatedRequestParams, _list_tools)
     server.add_request_handler("tools/call", CallToolRequestParams, _call_tool)
     return server
@@ -219,7 +219,7 @@ async def main_async() -> None:
 
 def main() -> None:
     if "--version" in sys.argv:
-        print(f"vision-mcp {__version__}")
+        print(f"shadow-vision {__version__}")
         return
     import anyio
 

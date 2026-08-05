@@ -1,5 +1,5 @@
 [project]
-name = "vision-mcp"
+name = "shadow-vision"
 description = "Local vision MCP server with pluggable backends (Ollama, OpenAI-compatible, Anthropic, Gemini), OCR, inspection, annotation, layout, reconstruction and comparison."
 requires-python = ">=3.11"
 readme = "README.md"
@@ -21,7 +21,7 @@ dependencies = ["mcp>=1.0.0", "httpx[socks]>=0.27.0", "Pillow>=10.0.0"]
 render = ["playwright>=1.40.0"]
 
 [project.scripts]
-vision-mcp = "vision_mcp.server:main"
+shadow-vision = "vision_mcp.server:main"
 
 [project.urls]
 Homepage = "https://github.com/WardLu/shadow-vision"

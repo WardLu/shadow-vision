@@ -34,7 +34,7 @@ def test_required_metadata_present() -> None:
 
 
 def test_script_entry_present() -> None:
-    assert "vision-mcp" in _pyproject()["project"]["scripts"]
+    assert "shadow-vision" in _pyproject()["project"]["scripts"]
 
 
 def test_render_extras_present() -> None:

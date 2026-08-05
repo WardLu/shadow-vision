@@ -2,7 +2,7 @@
 
 本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 与语义化版本。
 
-## [0.2.0] - 2026-08-05
+## [0.1.0] - 2026-08-05
 
 ### Added
 - 图片自动压缩 + 多裁剪（R1）
@@ -13,7 +13,7 @@
 - 远程 URL 图片输入 + SSRF 防护 `image_url`（F1）
 - 多图批量理解 `vision_compare`（F3）
 - R2 v2 截图复刻闭环渲染（Playwright，可选 `[render]` extras）
-- npm/PyPI 一键分发（`uvx vision-mcp` / `npx shadow-vision`）
+- npm/PyPI 一键分发（`uvx shadow-vision` / `npx shadow-vision`）
 
 ## [0.1.0] - 2026-08-05
 

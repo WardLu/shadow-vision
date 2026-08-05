@@ -932,6 +932,37 @@ wheels = [
 ]
 
 [[package]]
+name = "shadow-vision"
+source = { editable = "." }
+dependencies = [
+    { name = "httpx", extra = ["socks"] },
+    { name = "mcp" },
+    { name = "pillow" },
+]
+
+[package.optional-dependencies]
+render = [
+    { name = "playwright" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "httpx", extras = ["socks"], specifier = ">=0.27.0" },
+    { name = "mcp", specifier = ">=1.0.0" },
+    { name = "pillow", specifier = ">=10.0.0" },
+    { name = "playwright", marker = "extra == 'render'", specifier = ">=1.40.0" },
+]
+provides-extras = ["render"]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest" }]
+
+[[package]]
 name = "socksio"
 version = "1.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1008,34 +1039,3 @@ sdist = { url = "https://files.pythonhosted.org/packages/03/18/ccce41535dee1be77
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c7/d5/68e6e9bca63c0badf67002890a46d3784c958de45b65e1275ec583ca1f06/uvicorn-0.52.1-py3-none-any.whl", hash = "sha256:e4403f9d93188cf9d1088e9f40e3acd12630e2df8675316704379a7fc20fff6a", size = 79859, upload-time = "2026-08-01T18:19:29.294Z" },
 ]
-
-[[package]]
-name = "vision-mcp"
-source = { editable = "." }
-dependencies = [
-    { name = "httpx", extra = ["socks"] },
-    { name = "mcp" },
-    { name = "pillow" },
-]
-
-[package.optional-dependencies]
-render = [
-    { name = "playwright" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pytest" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "httpx", extras = ["socks"], specifier = ">=0.27.0" },
-    { name = "mcp", specifier = ">=1.0.0" },
-    { name = "pillow", specifier = ">=10.0.0" },
-    { name = "playwright", marker = "extra == 'render'", specifier = ">=1.40.0" },
-]
-provides-extras = ["render"]
-
-[package.metadata.requires-dev]
-dev = [{ name = "pytest" }]

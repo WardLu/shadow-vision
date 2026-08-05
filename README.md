@@ -28,7 +28,7 @@
 不需要 clone 仓库，直接运行：
 
 ```bash
-uvx vision-mcp          # Python / uv 用户（推荐）
+uvx shadow-vision          # Python / uv 用户（推荐）
 # 或 Node 习惯用户
 npx shadow-vision       # 需本机已装 uv
 ```
@@ -38,11 +38,11 @@ MCP 配置示例：
 ```toml
 [mcp_servers.vision]
 command = "uvx"
-args = ["vision-mcp"]
+args = ["shadow-vision"]
 env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b" }
 ```
 
-> `npx shadow-vision` 是一个薄壳，内部调用 `uvx vision-mcp`，需要本机已安装 [uv](https://docs.astral.sh/uv/)。两种入口行为一致。
+> `npx shadow-vision` 是一个薄壳，内部调用 `uvx shadow-vision`，需要本机已安装 [uv](https://docs.astral.sh/uv/)。两种入口行为一致。
 
 ### 1. 源码安装（开发 / 自托管）
 
@@ -71,7 +71,7 @@ ollama list
 Codex 可以直接执行：
 
 ```bash
-codex mcp add vision -- uv run vision-mcp
+codex mcp add vision -- uv run shadow-vision
 ```
 
 或者写入 `~/.codex/config.toml`：
@@ -80,7 +80,7 @@ codex mcp add vision -- uv run vision-mcp
 [mcp_servers.vision]
 type = "stdio"
 command = "uv"
-args = ["run", "vision-mcp"]
+args = ["run", "shadow-vision"]
 cwd = "/path/to/shadow-vision"
 env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b", OLLAMA_URL = "http://127.0.0.1:11434/api/chat" }
 ```
@@ -160,8 +160,8 @@ env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "服务端提供的
 ### Anthropic / Gemini
 
 ```bash
-VISION_BACKEND=anthropic ANTHROPIC_API_KEY=sk-ant-... VISION_MODEL=your-claude-vision-model uv run vision-mcp
-VISION_BACKEND=gemini GEMINI_API_KEY=AIza... VISION_MODEL=your-gemini-vision-model uv run vision-mcp
+VISION_BACKEND=anthropic ANTHROPIC_API_KEY=sk-ant-... VISION_MODEL=your-claude-vision-model uv run shadow-vision
+VISION_BACKEND=gemini GEMINI_API_KEY=AIza... VISION_MODEL=your-gemini-vision-model uv run shadow-vision
 ```
 
 Anthropic 还支持 `ANTHROPIC_BASE_URL`、`ANTHROPIC_VERSION` 和 `ANTHROPIC_MAX_TOKENS`；Gemini 还支持 `GEMINI_BASE_URL` 和 `GEMINI_MAX_TOKENS`。
@@ -252,7 +252,7 @@ time ollama run "$MODEL" "$IMAGE" "请描述图片内容，并列出你不确定
 
 ## 支持的 Agent
 
-所有 Agent 都启动同一命令：`uv run vision-mcp`。
+所有 Agent 都启动同一命令：`uv run shadow-vision`。
 
 | Agent | 配置文件 |
 |---|---|
