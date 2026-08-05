@@ -5,6 +5,7 @@
 ## [0.1.0] - 2026-08-05
 
 ### Added
+- 初始版本：`vision_ocr` / `vision_inspect`，四后端（Ollama / OpenAI-compatible / Anthropic / Gemini）
 - 图片自动压缩 + 多裁剪（R1）
 - 用户标注感知 `vision_annotate`（R3）
 - 布局分析 `vision_layout` 与截图复刻 `vision_reconstruct`（R2 v1 开环）
@@ -14,8 +15,3 @@
 - 多图批量理解 `vision_compare`（F3）
 - R2 v2 截图复刻闭环渲染（Playwright，可选 `[render]` extras）
 - npm/PyPI 一键分发（`uvx shadow-vision` / `npx shadow-vision`）
-
-## [0.1.0] - 2026-08-05
-
-### Added
-- 初始版本：`vision_ocr` / `vision_inspect`，四后端（Ollama / OpenAI-compatible / Anthropic / Gemini）。
