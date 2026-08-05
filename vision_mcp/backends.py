@@ -94,6 +94,7 @@ class OllamaBackend(VisionBackend):
                 "images": [_b64(data) for data, _ in images],
             }],
             "stream": False,
+            "options": {"num_ctx": self.config.ollama_num_ctx},
         }
         resp = self._post(self.url, headers={}, json=payload)
         data = resp.json()

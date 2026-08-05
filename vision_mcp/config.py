@@ -27,6 +27,7 @@ class Config:
     model: str = field(default_factory=lambda: os.getenv("VISION_MODEL", "qwen3-vl:2b"))
     # Ollama
     ollama_url: str = field(default_factory=lambda: os.getenv("OLLAMA_URL", "http://127.0.0.1:11434/api/chat"))
+    ollama_num_ctx: int = field(default_factory=lambda: int(os.getenv("VISION_OLLAMA_NUM_CTX", "32768")))
     # OpenAI-compatible endpoint. OPENAI_* is preferred; VISION_* remains supported.
     api_base: str = field(
         default_factory=lambda: _env(
