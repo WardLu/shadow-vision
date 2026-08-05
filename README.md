@@ -277,6 +277,12 @@ uv run pytest
 如果你对 B 端产品、AI 产品开发、供应链数字化或 Shadow 系列产品感兴趣，可以联系我：
 
 - **X（Twitter）**：[@Gollumgulu](https://x.com/Gollumgulu)
+- **微信公众号**：Ward 的 AI 产品实战
+
+<p align="center">
+  <img src="./assets/readme/wechat-qr.png" width="158" alt="Ward 的 AI 产品实战微信公众号二维码">
+</p>
+
 - **小红书 / 微博 / 抖音**：全网同名「Ward 的 AI 产品实战」—— [小红书](https://xhslink.cn/m/4W1NWyRrxv5) · [微博](https://weibo.com/u/8344390431) · [抖音](https://v.douyin.com/1y06PMohfoE/)
 - **产品主页**：[Shadow Nexus](https://www.shadow.wang/)
 - **Email**：[wardlu@126.com](mailto:wardlu@126.com)
