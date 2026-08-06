@@ -113,6 +113,8 @@ env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "glm-4v-flash", OPE
 
 其他 OpenAI 兼容的国内平台只需改 `OPENAI_API_BASE` 与 `VISION_MODEL`：硅基流动 `https://api.siliconflow.cn/v1`、阿里百炼 `https://dashscope.aliyuncs.com/compatible-mode/v1`、阶跃星辰 `https://api.stepfun.com/v1`、腾讯混元 `https://api.hunyuan.cloud.tencent.com/v1`、Moonshot `https://api.moonshot.cn/v1` 等。
 
+> **隐私提示**：API 后端（含国内平台）会把图片内容以 base64 发送到对应厂商服务器。机密/敏感图片建议改用本地 `ollama` 后端，避免数据外发。
+
 ## 配置后端
 
 ### 通用变量
