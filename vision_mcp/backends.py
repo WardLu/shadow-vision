@@ -86,11 +86,16 @@ class OllamaBackend(VisionBackend):
         self.url = config.ollama_url
 
     def analyze(self, prompt: str, images: list[tuple[bytes, str]], model: str) -> str:
+        content = prompt
+        # Qwen3 family defaults to thinking mode; `/no_think` disables it so
+        # latency/tokens stay low for the MCP use case.
+        if self.config.ollama_no_think:
+            content = f"{prompt}\n/no_think"
         payload = {
             "model": model,
             "messages": [{
                 "role": "user",
-                "content": prompt,
+                "content": content,
                 "images": [_b64(data) for data, _ in images],
             }],
             "stream": False,

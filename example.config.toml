@@ -6,9 +6,13 @@
 [mcp_servers.vision]
 type = "stdio"
 command = "uv"
-args = ["run", "vision-mcp"]
+args = ["run", "shadow-vision"]
 cwd = "/absolute/path/to/shadow-vision"
-env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b", OLLAMA_URL = "http://127.0.0.1:11434/api/chat" }
+env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b-instruct", OLLAMA_URL = "http://127.0.0.1:11434/api/chat" }
 
 # OpenAI-compatible example:
 # env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "your-vision-model", OPENAI_API_BASE = "https://api.example.com/v1", OPENAI_API_KEY = "sk-...", OPENAI_MAX_TOKENS = "1024", OPENAI_MAX_TOKENS_FIELD = "max_tokens" }
+
+# 国内免费视觉示例（智谱 GLM-4V-Flash）：
+# env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "glm-4v-flash", OPENAI_API_BASE = "https://open.bigmodel.cn/api/paas/v4", OPENAI_API_KEY = "你的智谱key" }
+# 其他 OpenAI 兼容国内平台：硅基流动 https://api.siliconflow.cn/v1、阿里百炼 https://dashscope.aliyuncs.com/compatible-mode/v1、阶跃星辰 https://api.stepfun.com/v1 等。
