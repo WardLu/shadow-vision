@@ -2,7 +2,7 @@
 
 本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 与语义化版本。
 
-## [0.1.1] - 2026-08-06
+## [0.1.1] - 2026-08-07
 
 ### Fixed
 - 修复 MCP 配置/模板命令入口 `vision-mcp` → `shadow-vision`，此前 `uv run vision-mcp` 会 `Failed to spawn` 导致 MCP 无法启动。
@@ -13,6 +13,7 @@
 ### Added
 - `VISION_OLLAMA_NO_THINK`：Ollama 后端在 prompt 末尾追加 `/no_think`（默认开启，对支持该指令的 Qwen3 模型生效）。
 - README 与配置模板新增智谱 `glm-4v-flash` 等国内 OpenAI 兼容平台接入示例。
+- 品牌视觉：新增产品 LOGO（07e 双瞳纵向细长版，shadow-nexus 系列设计语言）+ 重新设计赛博风 Hero 横幅 + 横版字标。
 
 ## [0.1.0] - 2026-08-05
 
