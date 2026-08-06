@@ -1,0 +1,22 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 01 洞察之眼</title>
+  <desc id="desc">杏仁主眼 + 青靛紫渐变虹膜与瞳孔高光，下方偏移阴影层，象征影瞳的视觉洞察。</desc>
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="irisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <path d="M22 62 C22 48 40 36 60 36 C80 36 98 48 98 62 C98 76 80 88 60 88 C40 88 22 76 22 62 Z" fill="#22d3ee" opacity="0.12"/>
+  <path d="M22 60 C22 46 40 34 60 34 C80 34 98 46 98 60 C98 74 80 86 60 86 C40 86 22 74 22 60 Z" fill="none" stroke="url(#brandGrad)" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="60" cy="60" r="17" fill="url(#irisGrad)" filter="url(#glow)"/>
+  <circle cx="60" cy="60" r="17" stroke="#030712" stroke-width="2" opacity="0.55"/>
+  <circle cx="60" cy="60" r="7" fill="#030712"/>
+  <circle cx="55" cy="55" r="3" fill="#fff" opacity="0.9"/>
+</svg>

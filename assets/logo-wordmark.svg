@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">影瞳 Shadow Vision — 横版字标</title>
+  <desc id="desc">影瞳 Shadow Vision 横版字标：双瞳叠加徽标 + 产品名，深色赛博风格。</desc>
+  <defs>
+    <linearGradient id="wbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b0e14"/>
+      <stop offset="1" stop-color="#10141d"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="irisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="360" rx="40" fill="url(#wbg)"/>
+
+  <!-- 双瞳叠加 LOGO（缩放至左侧，约 220px 高） -->
+  <g transform="translate(90 70) scale(2.2)">
+    <!-- 后眼（右上，紫色阴影） -->
+    <path d="M28 46 C28 36 40 28 56 28 C72 28 84 36 84 46 C84 56 72 64 56 64 C40 64 28 56 28 46 Z"
+          fill="none" stroke="#a855f7" stroke-width="4" stroke-linejoin="round" opacity="0.42"/>
+    <circle cx="56" cy="46" r="11" fill="#a855f7" opacity="0.18"/>
+    <circle cx="56" cy="46" r="5" fill="#a855f7" opacity="0.35"/>
+    <!-- 前眼（左下，青蓝主色） -->
+    <path d="M22 66 C22 52 36 42 54 42 C72 42 86 52 86 66 C86 80 72 90 54 90 C36 90 22 80 22 66 Z"
+          fill="none" stroke="url(#brandGrad)" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="54" cy="66" r="13" fill="url(#irisGrad)" filter="url(#glow)"/>
+    <circle cx="54" cy="66" r="13" stroke="#030712" stroke-width="2" opacity="0.5"/>
+    <circle cx="54" cy="66" r="5.5" fill="#030712"/>
+    <circle cx="50" cy="62" r="2.2" fill="#fff" opacity="0.9"/>
+  </g>
+
+  <!-- 文字 -->
+  <text x="380" y="180" font-size="72" font-weight="700" fill="#e8edf6"
+        font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">Shadow Vision</text>
+  <text x="380" y="228" font-size="30" font-weight="600" fill="#57d6c7"
+        font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">影瞳</text>
+  <text x="380" y="270" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="22" fill="#8a93a6" letter-spacing="1">
+    OPEN-SOURCE MCP · VISION SERVER
+  </text>
+</svg>

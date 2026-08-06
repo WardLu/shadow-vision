@@ -1,0 +1,31 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 09 S 眼波</title>
+  <desc id="desc">S 形曲线上下对称构成眼睛轮廓，S = Shadow，流动感强，呼应 portal 神经路径风格。</desc>
+  <defs>
+    <linearGradient id="se" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="seg" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <!-- 阴影层 -->
+  <path d="M28 40 C40 40, 48 52, 60 52 C72 52, 80 40, 92 40 C84 60, 72 68, 60 68 C48 68, 36 60, 28 40 Z" fill="#3b82f6" opacity="0.2" transform="translate(3 5)"/>
+  <path d="M28 80 C40 80, 48 68, 60 68 C72 68, 80 80, 92 80 C84 60, 72 52, 60 52 C48 52, 36 60, 28 80 Z" fill="#4f46e5" opacity="0.15" transform="translate(3 5)"/>
+  <!-- 上眼睑 S （从左到右先下后上） -->
+  <path d="M24 44 C36 44, 46 56, 60 56 C74 56, 84 44, 96 44" stroke="url(#se)" stroke-width="5.5" stroke-linecap="round" filter="url(#seg)"/>
+  <!-- 下眼睑 S （从左到右先上后下） -->
+  <path d="M24 76 C36 76, 46 64, 60 64 C74 64, 84 76, 96 76" stroke="url(#se)" stroke-width="5.5" stroke-linecap="round" filter="url(#seg)"/>
+  <!-- 瞳孔 -->
+  <circle cx="60" cy="60" r="9" fill="#fff" filter="url(#seg)"/>
+  <circle cx="60" cy="60" r="4" fill="#030712"/>
+  <!-- 端点节点 -->
+  <circle cx="24" cy="44" r="3.5" fill="#fff" opacity="0.8"/>
+  <circle cx="96" cy="44" r="3.5" fill="#fff" opacity="0.8"/>
+  <circle cx="24" cy="76" r="3.5" fill="#fff" opacity="0.8"/>
+  <circle cx="96" cy="76" r="3.5" fill="#fff" opacity="0.8"/>
+  <!-- 速度点缀 -->
+  <path d="M18 24 H32" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M88 96 H102" stroke="#a855f7" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+</svg>

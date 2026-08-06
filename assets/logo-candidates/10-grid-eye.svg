@@ -1,0 +1,91 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 10 栅格之眼</title>
+  <desc id="desc">眼睛形状由像素栅格点阵组成，数字感强，突出 MCP/AI 工具属性。</desc>
+  <defs>
+    <linearGradient id="ge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="geg" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <!-- 栅格点阵组成眼睛轮廓（8 行 x 10 列，y=30..80, x=22..98） -->
+  <g filter="url(#geg)">
+    <!-- 行1 (y=30): 空 0 1 1 1 1 1 1 1 0 空  -->
+    <circle cx="30" cy="30" r="3" fill="#22d3ee"/>
+    <circle cx="38" cy="30" r="3" fill="#22d3ee"/>
+    <circle cx="46" cy="30" r="3" fill="#67e8f9"/>
+    <circle cx="54" cy="30" r="3" fill="#a5f3fc"/>
+    <circle cx="66" cy="30" r="3" fill="#a5f3fc"/>
+    <circle cx="74" cy="30" r="3" fill="#67e8f9"/>
+    <circle cx="82" cy="30" r="3" fill="#22d3ee"/>
+    <circle cx="90" cy="30" r="3" fill="#22d3ee"/>
+    <!-- 行2 (y=38): 满 -->
+    <circle cx="22" cy="38" r="3" fill="#22d3ee"/>
+    <circle cx="30" cy="38" r="3" fill="#22d3ee" opacity="0.7"/>
+    <circle cx="38" cy="38" r="3" fill="#38bdf8"/>
+    <circle cx="46" cy="38" r="3" fill="#818cf8"/>
+    <circle cx="54" cy="38" r="3" fill="#a78bfa"/>
+    <circle cx="66" cy="38" r="3" fill="#a78bfa"/>
+    <circle cx="74" cy="38" r="3" fill="#818cf8"/>
+    <circle cx="82" cy="38" r="3" fill="#38bdf8"/>
+    <circle cx="90" cy="38" r="3" fill="#22d3ee" opacity="0.7"/>
+    <circle cx="98" cy="38" r="3" fill="#22d3ee"/>
+    <!-- 行3 (y=46): 更宽 -->
+    <circle cx="22" cy="46" r="3" fill="#22d3ee" opacity="0.85"/>
+    <circle cx="30" cy="46" r="3" fill="#38bdf8"/>
+    <circle cx="38" cy="46" r="3" fill="#818cf8"/>
+    <circle cx="46" cy="46" r="3" fill="#c4b5fd"/>
+    <circle cx="54" cy="46" r="3" fill="#f0abfc"/>
+    <circle cx="66" cy="46" r="3" fill="#f0abfc"/>
+    <circle cx="74" cy="46" r="3" fill="#c4b5fd"/>
+    <circle cx="82" cy="46" r="3" fill="#818cf8"/>
+    <circle cx="90" cy="46" r="3" fill="#38bdf8"/>
+    <circle cx="98" cy="46" r="3" fill="#22d3ee" opacity="0.85"/>
+    <!-- 行4 (y=54): 最宽，中央瞳孔亮 -->
+    <circle cx="22" cy="54" r="3" fill="#22d3ee" opacity="0.8"/>
+    <circle cx="30" cy="54" r="3" fill="#38bdf8"/>
+    <circle cx="38" cy="54" r="3" fill="#a855f7"/>
+    <circle cx="46" cy="54" r="3" fill="#e879f9"/>
+    <circle cx="54" cy="54" r="3" fill="#fff"/>
+    <circle cx="66" cy="54" r="3" fill="#fff"/>
+    <circle cx="74" cy="54" r="3" fill="#e879f9"/>
+    <circle cx="82" cy="54" r="3" fill="#a855f7"/>
+    <circle cx="90" cy="54" r="3" fill="#38bdf8"/>
+    <circle cx="98" cy="54" r="3" fill="#22d3ee" opacity="0.8"/>
+    <!-- 行5 (y=62): 同 row3 -->
+    <circle cx="22" cy="62" r="3" fill="#22d3ee" opacity="0.85"/>
+    <circle cx="30" cy="62" r="3" fill="#38bdf8"/>
+    <circle cx="38" cy="62" r="3" fill="#818cf8"/>
+    <circle cx="46" cy="62" r="3" fill="#c4b5fd"/>
+    <circle cx="54" cy="62" r="3" fill="#f0abfc"/>
+    <circle cx="66" cy="62" r="3" fill="#f0abfc"/>
+    <circle cx="74" cy="62" r="3" fill="#c4b5fd"/>
+    <circle cx="82" cy="62" r="3" fill="#818cf8"/>
+    <circle cx="90" cy="62" r="3" fill="#38bdf8"/>
+    <circle cx="98" cy="62" r="3" fill="#22d3ee" opacity="0.85"/>
+    <!-- 行6 (y=70): 同 row2 -->
+    <circle cx="22" cy="70" r="3" fill="#22d3ee"/>
+    <circle cx="30" cy="70" r="3" fill="#22d3ee" opacity="0.7"/>
+    <circle cx="38" cy="70" r="3" fill="#38bdf8"/>
+    <circle cx="46" cy="70" r="3" fill="#818cf8"/>
+    <circle cx="54" cy="70" r="3" fill="#a78bfa"/>
+    <circle cx="66" cy="70" r="3" fill="#a78bfa"/>
+    <circle cx="74" cy="70" r="3" fill="#818cf8"/>
+    <circle cx="82" cy="70" r="3" fill="#38bdf8"/>
+    <circle cx="90" cy="70" r="3" fill="#22d3ee" opacity="0.7"/>
+    <circle cx="98" cy="70" r="3" fill="#22d3ee"/>
+    <!-- 行7 (y=78): 同 row1 -->
+    <circle cx="30" cy="78" r="3" fill="#22d3ee"/>
+    <circle cx="38" cy="78" r="3" fill="#22d3ee"/>
+    <circle cx="46" cy="78" r="3" fill="#67e8f9"/>
+    <circle cx="54" cy="78" r="3" fill="#a5f3fc"/>
+    <circle cx="66" cy="78" r="3" fill="#a5f3fc"/>
+    <circle cx="74" cy="78" r="3" fill="#67e8f9"/>
+    <circle cx="82" cy="78" r="3" fill="#22d3ee"/>
+    <circle cx="90" cy="78" r="3" fill="#22d3ee"/>
+  </g>
+  <!-- 中央瞳孔暗点 -->
+  <circle cx="60" cy="54" r="5" fill="#030712"/>
+</svg>

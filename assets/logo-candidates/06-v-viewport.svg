@@ -1,0 +1,24 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 06 V 形视窗</title>
+  <desc id="desc">V 字形取景框 + 上方扫描线，V 即 Vision，简洁有力的工具型图标。</desc>
+  <defs>
+    <linearGradient id="v" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="vg" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <!-- 上方扫描线 -->
+  <path d="M18 28 H102" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M24 36 H96" stroke="#a855f7" stroke-width="2" stroke-dasharray="3 4" stroke-linecap="round" opacity="0.5"/>
+  <!-- V 形取景框 -->
+  <path d="M22 48 L60 96 L98 48" stroke="url(#v)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#vg)"/>
+  <!-- 底部横线 -->
+  <path d="M30 48 H90" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <!-- 活动节点 -->
+  <circle cx="60" cy="96" r="5" fill="#fff" filter="url(#vg)"/>
+  <circle cx="22" cy="48" r="3" fill="#fff" opacity="0.9"/>
+  <circle cx="98" cy="48" r="3" fill="#fff" opacity="0.9"/>
+</svg>

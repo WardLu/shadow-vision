@@ -1,0 +1,25 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 04 视锥凝视</title>
+  <desc id="desc">瞳孔为焦点向外发散视锥虚线，象征视野域与图像分析聚焦。</desc>
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="irisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <g opacity="0.5">
+    <path d="M60 60 L18 22 M60 60 L102 22 M60 60 L18 98 M60 60 L102 98" stroke="#818cf8" stroke-width="2" stroke-dasharray="3 5" stroke-linecap="round"/>
+  </g>
+  <path d="M30 60 C30 44 44 32 60 32 C76 32 90 44 90 60 C90 76 76 88 60 88 C44 88 30 76 30 60 Z" fill="none" stroke="url(#brandGrad)" stroke-width="4.5" stroke-linejoin="round"/>
+  <circle cx="60" cy="60" r="15" fill="url(#irisGrad)" filter="url(#glow)"/>
+  <circle cx="60" cy="60" r="15" stroke="#030712" stroke-width="2" opacity="0.55"/>
+  <circle cx="60" cy="60" r="6" fill="#030712"/>
+  <circle cx="60" cy="60" r="2.5" fill="#fff"/>
+  <circle cx="56" cy="56" r="2" fill="#fff" opacity="0.8"/>
+</svg>

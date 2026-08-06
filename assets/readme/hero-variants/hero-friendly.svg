@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">影瞳 Shadow Vision — 友好卡通风 Hero</title>
+  <desc id="desc">浅绿友好风格：圆润 LOGO + 大标题 + 彩色功能卡片，新手友好。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0fdf4"/>
+      <stop offset="1" stop-color="#ecfdf5"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="irisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0%" y1="0%" x2="0%" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/><stop offset="1" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="0%" y1="0%" x2="0%" y2="1">
+      <stop offset="0" stop-color="#fce7f3"/><stop offset="1" stop-color="#fbcfe8"/>
+    </linearGradient>
+    <linearGradient id="card3" x1="0%" y1="0%" x2="0%" y2="1">
+      <stop offset="0" stop-color="#fef3c7"/><stop offset="1" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="400" rx="24" fill="url(#bg)"/>
+
+  <!-- 装饰圆点 -->
+  <circle cx="1080" cy="80" r="6" fill="#34d399" opacity="0.5"/>
+  <circle cx="1120" cy="120" r="4" fill="#60a5fa" opacity="0.6"/>
+  <circle cx="100" cy="320" r="5" fill="#f472b6" opacity="0.5"/>
+
+  <g transform="translate(72 72)">
+    <!-- LOGO (80px) -->
+    <g transform="scale(0.833)">
+      <path d="M28 46 C28 36 40 28 56 28 C72 28 84 36 84 46 C84 56 72 64 56 64 C40 64 28 56 28 46 Z"
+            fill="#a7f3d0" stroke="#34d399" stroke-width="3" stroke-linejoin="round" opacity="0.5"/>
+      <path d="M22 66 C22 52 36 42 54 42 C72 42 86 52 86 66 C86 80 72 90 54 90 C36 90 22 80 22 66 Z"
+            fill="#d1fae5" stroke="url(#brandGrad)" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="54" cy="66" r="13" fill="url(#irisGrad)"/>
+      <circle cx="54" cy="66" r="5.5" fill="#064e3b"/>
+      <circle cx="50" cy="62" r="2.2" fill="#fff" opacity="0.9"/>
+    </g>
+
+    <!-- 主标题 -->
+    <text x="110" y="36" font-size="28" font-weight="700" fill="#064e3b"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">影瞳</text>
+    <text x="110" y="62" font-size="16" fill="#059669"
+          font-family="ui-monospace,SFMono-Regular,Menlo,monospace">shadow-vision</text>
+
+    <!-- 大标题 -->
+    <text x="0" y="150" font-size="60" font-weight="700" fill="#064e3b"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">给 AI 一双眼睛</text>
+    <text x="0" y="195" font-size="22" fill="#047857"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">三行配置，让你的文本模型看懂图片。</text>
+  </g>
+
+  <!-- 三张功能卡片 -->
+  <g transform="translate(72 240)">
+    <rect width="180" height="100" rx="14" fill="url(#card1)"/>
+    <text x="20" y="38" font-size="18" font-weight="700" fill="#1e3a8a"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">📝 OCR 识字</text>
+    <text x="20" y="64" font-size="14" fill="#1e40af"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">识别图片中所有文字</text>
+
+    <rect x="200" y="0" width="180" height="100" rx="14" fill="url(#card2)"/>
+    <text x="220" y="38" font-size="18" font-weight="700" fill="#831843"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">🔍 看懂界面</text>
+    <text x="220" y="64" font-size="14" fill="#9d174d"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">分析 UI 布局与元素</text>
+
+    <rect x="400" y="0" width="180" height="100" rx="14" fill="url(#card3)"/>
+    <text x="420" y="38" font-size="18" font-weight="700" fill="#78350f"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">🎨 截图复刻</text>
+    <text x="420" y="64" font-size="14" fill="#92400e"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">把设计图转成 HTML 代码</text>
+  </g>
+</svg>

@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="./assets/logo.svg" width="120" alt="影瞳 Shadow Vision Logo">
+</p>
+
+<p align="center">
   <img src="./assets/readme/hero.svg" width="100%" alt="影瞳 Shadow Vision — 开源 MCP 视觉服务，让纯文本 LLM 获得图像理解、OCR 与视觉分析能力">
 </p>
 
