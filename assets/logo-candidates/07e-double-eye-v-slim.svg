@@ -1,0 +1,34 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 07e 双瞳叠加·纵向细长</title>
+  <desc id="desc">纵向错落布局 + 细长杏仁眼，右上紫瞳为阴影、左下青瞳为主视，叠加关系明确。</desc>
+  <defs>
+    <linearGradient id="de" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="iris2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="deg" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- 后眼（右上，紫色阴影，细长） -->
+  <path d="M28 46 C28 36 40 28 56 28 C72 28 84 36 84 46 C84 56 72 64 56 64 C40 64 28 56 28 46 Z"
+        fill="none" stroke="#a855f7" stroke-width="4" stroke-linejoin="round" opacity="0.42"/>
+  <circle cx="56" cy="46" r="11" fill="#a855f7" opacity="0.18"/>
+  <circle cx="56" cy="46" r="5" fill="#a855f7" opacity="0.35"/>
+
+  <!-- 前眼（左下，青蓝主色，细长） -->
+  <path d="M22 66 C22 52 36 42 54 42 C72 42 86 52 86 66 C86 80 72 90 54 90 C36 90 22 80 22 66 Z"
+        fill="none" stroke="url(#de)" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="54" cy="66" r="13" fill="url(#iris2)" filter="url(#deg)"/>
+  <circle cx="54" cy="66" r="13" stroke="#030712" stroke-width="2" opacity="0.5"/>
+  <circle cx="54" cy="66" r="5.5" fill="#030712"/>
+  <circle cx="50" cy="62" r="2.2" fill="#fff" opacity="0.9"/>
+
+  <!-- 速度点缀 -->
+  <path d="M14 18 H26" stroke="#a855f7" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M94 102 H104" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+</svg>

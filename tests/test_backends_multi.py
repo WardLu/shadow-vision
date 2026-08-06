@@ -49,6 +49,22 @@ def test_ollama_multi_image_payload() -> None:
     assert images == [base64.b64encode(d).decode() for d, _ in IMAGES]
 
 
+def test_ollama_no_think_appended_by_default() -> None:
+    config = Config()
+    with _patch_post() as post:
+        OllamaBackend(config).analyze("prompt", IMAGES, "m")
+    content = post.call_args.kwargs["json"]["messages"][0]["content"]
+    assert content == "prompt\n/no_think"
+
+
+def test_ollama_no_think_disabled() -> None:
+    config = Config(ollama_no_think=False)
+    with _patch_post() as post:
+        OllamaBackend(config).analyze("prompt", IMAGES, "m")
+    content = post.call_args.kwargs["json"]["messages"][0]["content"]
+    assert content == "prompt"
+
+
 def test_anthropic_multi_image_payload() -> None:
     config = Config(anthropic_api_key="k", anthropic_max_tokens=1024)
     with _patch_post() as post:

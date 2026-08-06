@@ -1,0 +1,28 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 07b 双瞳叠加·纵向版</title>
+  <desc id="desc">阴影眼从右上方偏移，纵向错落更有动感，两瞳一实一虚。</desc>
+  <defs>
+    <linearGradient id="de" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="iris2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="deg" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <!-- 后眼（右上，紫色阴影） -->
+  <path d="M34 52 C34 40 46 30 60 30 C74 30 86 40 86 52 C86 64 74 74 60 74 C46 74 34 64 34 52 Z" fill="none" stroke="#a855f7" stroke-width="4" stroke-linejoin="round" opacity="0.4"/>
+  <circle cx="60" cy="52" r="12" fill="#a855f7" opacity="0.18"/>
+  <!-- 前眼（左下，青蓝主色） -->
+  <path d="M26 64 C26 50 40 40 56 40 C72 40 84 50 84 64 C84 78 72 88 56 88 C40 88 26 78 26 64 Z" fill="none" stroke="url(#de)" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="56" cy="64" r="15" fill="url(#iris2)" filter="url(#deg)"/>
+  <circle cx="56" cy="64" r="15" stroke="#030712" stroke-width="2" opacity="0.5"/>
+  <circle cx="56" cy="64" r="6" fill="#030712"/>
+  <circle cx="51" cy="59" r="2.5" fill="#fff" opacity="0.9"/>
+  <!-- 速度点缀 -->
+  <path d="M18 20 H32" stroke="#a855f7" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M92 100 H102" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+</svg>

@@ -378,7 +378,7 @@ npx shadow-vision
 [mcp_servers.vision]
 command = "uvx"
 args = ["shadow-vision"]
-env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b" }
+env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b-instruct" }
 ```
 保留 git clone 方式作为「开发/源码」小节。
 

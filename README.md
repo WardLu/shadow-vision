@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="./assets/logo.svg" width="120" alt="影瞳 Shadow Vision Logo">
+</p>
+
+<p align="center">
   <img src="./assets/readme/hero.svg" width="100%" alt="影瞳 Shadow Vision — 开源 MCP 视觉服务，让纯文本 LLM 获得图像理解、OCR 与视觉分析能力">
 </p>
 
@@ -39,7 +43,7 @@ MCP 配置示例：
 [mcp_servers.vision]
 command = "uvx"
 args = ["shadow-vision"]
-env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b" }
+env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b-instruct" }
 ```
 
 > `npx shadow-vision` 是一个薄壳，内部调用 `uvx shadow-vision`，需要本机已安装 [uv](https://docs.astral.sh/uv/)。两种入口行为一致。
@@ -60,11 +64,11 @@ uv sync
 
 ```bash
 ollama serve
-ollama pull qwen3-vl:2b
+ollama pull qwen3-vl:2b-instruct
 ollama list
 ```
 
-`qwen3-vl:2b` 是默认视觉模型。也可以把 `VISION_MODEL` 换成 `ollama list` 中其他已经下载的视觉模型；文本模型不能直接完成看图。
+`qwen3-vl:2b-instruct` 是默认视觉模型（非思考版，响应更快）。若需要更强的推理-思考能力，可改用 `qwen3-vl:2b`（thinking 版）等；也可以把 `VISION_MODEL` 换成 `ollama list` 中其他已经下载的视觉模型。
 
 ### 3. 注册为 MCP 服务
 
@@ -82,7 +86,7 @@ type = "stdio"
 command = "uv"
 args = ["run", "shadow-vision"]
 cwd = "/path/to/shadow-vision"
-env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b", OLLAMA_URL = "http://127.0.0.1:11434/api/chat" }
+env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b-instruct", OLLAMA_URL = "http://127.0.0.1:11434/api/chat" }
 ```
 
 重启 MCP 客户端后，直接让模型“看一下这张图片”即可。
@@ -105,6 +109,16 @@ env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "服务端提供的
 
 `OPENAI_*` 表示 OpenAI Chat Completions 兼容协议，也适用于 LM Studio、vLLM 和其他提供 `/v1/chat/completions` 的服务。
 
+国内平台的免费视觉示例（智谱 GLM-4V-Flash）：
+
+```toml
+env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "glm-4v-flash", OPENAI_API_BASE = "https://open.bigmodel.cn/api/paas/v4", OPENAI_API_KEY = "你的智谱key" }
+```
+
+其他 OpenAI 兼容的国内平台只需改 `OPENAI_API_BASE` 与 `VISION_MODEL`：硅基流动 `https://api.siliconflow.cn/v1`、阿里百炼 `https://dashscope.aliyuncs.com/compatible-mode/v1`、阶跃星辰 `https://api.stepfun.com/v1`、腾讯混元 `https://api.hunyuan.cloud.tencent.com/v1`、Moonshot `https://api.moonshot.cn/v1` 等。
+
+> **隐私提示**：API 后端（含国内平台）会把图片内容以 base64 发送到对应厂商服务器。机密/敏感图片建议改用本地 `ollama` 后端，避免数据外发。
+
 ## 配置后端
 
 ### 通用变量
@@ -112,7 +126,7 @@ env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "服务端提供的
 | 变量 | 默认值 | 说明 |
 |---|---|---|
 | `VISION_BACKEND` | `ollama` | `ollama` / `openai_compatible` / `anthropic` / `gemini` |
-| `VISION_MODEL` | `qwen3-vl:2b` | 视觉模型名称 |
+| `VISION_MODEL` | `qwen3-vl:2b-instruct` | 视觉模型名称 |
 | `VISION_TIMEOUT` | `180` | 读取超时（秒），`VISION_READ_TIMEOUT` 的兼容别名 |
 | `VISION_CONNECT_TIMEOUT` | `10` | 连接超时（秒） |
 | `VISION_READ_TIMEOUT` | `180` | 读取超时（秒） |
@@ -227,12 +241,12 @@ vision_compare(images=[{"image_path": "/tmp/a.png", "label": "改前"}, {"image_
 
 ## 本地模型选择与测评
 
-Ollama 模型页可以查看模型包大小、上下文窗口和图像能力，但模型包大小不是最低内存要求。建议从 `qwen3-vl:2b` 开始；如果 OCR 或复杂图表理解不足，再比较 `qwen3-vl:4b`、`qwen3-vl:8b` 或文档 OCR 取向的 `minicpm-v4.5:q4_0`。
+Ollama 模型页可以查看模型包大小、上下文窗口和图像能力，但模型包大小不是最低内存要求。建议从 `qwen3-vl:2b-instruct` 开始（非思考版，延迟低）；如果 OCR 或复杂图表理解不足，再比较 `qwen3-vl:4b`、`qwen3-vl:8b` 或文档 OCR 取向的 `minicpm-v4.5:q4_0`。
 
 准备 3–5 张真实图片，覆盖 OCR、截图、图表和困难样本，并使用相同提示词比较模型：
 
 ```bash
-MODEL=qwen3-vl:2b
+MODEL=qwen3-vl:2b-instruct
 IMAGE=/absolute/path/to/test.png
 
 time ollama run "$MODEL" "$IMAGE" "请准确抄录图片中的全部文字，只输出文字。"

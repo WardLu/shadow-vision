@@ -1,0 +1,34 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 07d 双瞳叠加·强辉光</title>
+  <desc id="desc">更大辉光 + 轨道虚线 + 角部装饰线，赛博感拉满，最贴近 shadow-nexus 主站风格。</desc>
+  <defs>
+    <linearGradient id="de" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="iris2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="deg" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <!-- 后轨道虚线 -->
+  <path d="M26 68 C26 54 42 44 62 44 C82 44 98 54 98 68 C98 82 82 92 62 92 C42 92 26 82 26 68 Z" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="3 4" opacity="0.5"/>
+  <!-- 阴影眼 -->
+  <path d="M24 68 C24 54 42 44 62 44 C82 44 100 54 100 68 C100 82 82 92 62 92 C42 92 24 82 24 68 Z" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linejoin="round" opacity="0.4"/>
+  <circle cx="62" cy="68" r="15" fill="#3b82f6" opacity="0.15"/>
+  <!-- 主眼 -->
+  <path d="M20 60 C20 46 38 36 58 36 C78 36 96 46 96 60 C96 74 78 84 58 84 C38 84 20 74 20 60 Z" fill="none" stroke="url(#de)" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="58" cy="60" r="16" fill="url(#iris2)" filter="url(#deg)"/>
+  <circle cx="58" cy="60" r="16" stroke="#030712" stroke-width="2" opacity="0.5"/>
+  <circle cx="58" cy="60" r="6.5" fill="#030712"/>
+  <circle cx="53" cy="55" r="2.5" fill="#fff" opacity="0.9"/>
+  <!-- 四角装饰 -->
+  <path d="M16 24 H28 V12" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M104 24 H92 V12" stroke="#a855f7" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M16 96 H28 V108" stroke="#a855f7" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M104 96 H92 V108" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <!-- 扫描线 -->
+  <path d="M22 60 H94" stroke="#22d3ee" stroke-width="1" stroke-dasharray="2 4" opacity="0.4"/>
+</svg>

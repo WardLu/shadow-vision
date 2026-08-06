@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">影瞳 Shadow Vision — 极简编辑风 Hero</title>
+  <desc id="desc">米白极简编辑风格：细 LOGO + 衬线大标题 + 灰色副标题，高级杂志感。</desc>
+  <defs>
+    <linearGradient id="irisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/><stop offset="100%" stop-color="#374151"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="400" rx="20" fill="#fafaf9"/>
+
+  <!-- 左侧细线装饰 -->
+  <line x1="72" y1="80" x2="72" y2="320" stroke="#d4d4d4" stroke-width="1"/>
+
+  <g transform="translate(120 84)">
+    <!-- LOGO (60px) 单色细线条 -->
+    <g transform="scale(0.625)">
+      <path d="M28 46 C28 36 40 28 56 28 C72 28 84 36 84 46 C84 56 72 64 56 64 C40 64 28 56 28 46 Z"
+            fill="none" stroke="#9ca3af" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="56" cy="46" r="11" fill="none" stroke="#d1d5db" stroke-width="2"/>
+      <path d="M22 66 C22 52 36 42 54 42 C72 42 86 52 86 66 C86 80 72 90 54 90 C36 90 22 80 22 66 Z"
+            fill="none" stroke="#111827" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="54" cy="66" r="13" fill="url(#irisGrad)"/>
+      <circle cx="54" cy="66" r="5.5" fill="#fafaf9"/>
+      <circle cx="51" cy="63" r="2" fill="#111827" opacity="0.3"/>
+    </g>
+
+    <!-- 标签 -->
+    <text x="80" y="12" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" fill="#6b7280" letter-spacing="2">MCP VISION SERVER · v0.1</text>
+
+    <!-- 主标题（大衬线） -->
+    <text x="0" y="140" font-size="78" font-weight="500" fill="#111827"
+          font-family="Georgia,'Times New Roman',serif" font-style="italic">Shadow Vision</text>
+    <text x="0" y="186" font-size="26" font-weight="400" fill="#374151"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">影瞳</text>
+    <line x1="0" y1="210" x2="80" y2="210" stroke="#111827" stroke-width="1.5"/>
+    <text x="0" y="240" font-size="17" fill="#4b5563"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">给纯文本 LLM 一双眼睛。</text>
+    <text x="0" y="266" font-size="17" fill="#6b7280"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">OCR · 图像理解 · 布局分析 · 截图复刻 · 多图对比</text>
+  </g>
+
+  <!-- 右侧：标本化的 3 张小图 -->
+  <g transform="translate(760 80)">
+    <rect x="0" y="0" width="140" height="100" rx="6" fill="#f3f4f6" stroke="#e5e7eb"/>
+    <text x="16" y="36" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="14" fill="#111827">OCR</text>
+    <text x="16" y="58" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#6b7280">识别文字</text>
+
+    <rect x="160" y="0" width="140" height="100" rx="6" fill="#f3f4f6" stroke="#e5e7eb"/>
+    <text x="16" y="36" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="14" fill="#111827">INSPECT</text>
+    <text x="16" y="58" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#6b7280">分析界面</text>
+
+    <rect x="80" y="120" width="140" height="100" rx="6" fill="#f3f4f6" stroke="#e5e7eb"/>
+    <text x="16" y="36" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="14" fill="#111827">RECONSTRUCT</text>
+    <text x="16" y="58" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" fill="#6b7280">生成代码</text>
+
+    <text x="0" y="260" font-size="12" fill="#9ca3af" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">MIT LICENSE · PYTHON 3.11+</text>
+  </g>
+</svg>

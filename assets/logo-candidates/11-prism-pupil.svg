@@ -1,0 +1,35 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 11 棱镜瞳孔</title>
+  <desc id="desc">三角形棱镜做瞳孔，光从左侧进、右侧折射出光谱，象征把图像分解为多维度理解。</desc>
+  <defs>
+    <linearGradient id="pp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="iris3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="ppg" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <!-- 左入射光 -->
+  <path d="M12 60 H44" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M12 52 H36" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M12 68 H36" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <!-- 眼睛外框 -->
+  <path d="M28 60 C28 46 42 36 60 36 C78 36 92 46 92 60 C92 74 78 84 60 84 C42 84 28 74 28 60 Z" fill="none" stroke="url(#pp)" stroke-width="4.5" stroke-linejoin="round"/>
+  <!-- 虹膜 -->
+  <circle cx="60" cy="60" r="18" fill="url(#iris3)" filter="url(#ppg)"/>
+  <circle cx="60" cy="60" r="18" stroke="#030712" stroke-width="2" opacity="0.5"/>
+  <!-- 棱镜瞳孔 -->
+  <polygon points="54,50 70,60 54,70" fill="#030712" stroke="url(#pp)" stroke-width="1.5"/>
+  <!-- 右出射光谱 -->
+  <path d="M78 54 H104" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M78 58 H108" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M78 62 H104" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M78 66 H100" stroke="#ec4899" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <!-- 节点 -->
+  <circle cx="12" cy="60" r="3" fill="#fff" opacity="0.85"/>
+  <circle cx="108" cy="58" r="2.5" fill="#fff" opacity="0.8"/>
+</svg>

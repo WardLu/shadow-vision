@@ -1,0 +1,24 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Shadow Vision 05 影瞳光晕</title>
+  <desc id="desc">大虹膜光晕 + 偏移阴影圆环轨道 + 瞳孔，强调「影随瞳」的双重视觉。</desc>
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="irisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="2"/>
+  <circle cx="66" cy="68" r="30" fill="#22d3ee" opacity="0.14"/>
+  <circle cx="60" cy="60" r="30" fill="url(#irisGrad)" filter="url(#glow)"/>
+  <circle cx="60" cy="60" r="30" stroke="#030712" stroke-width="2" opacity="0.5"/>
+  <circle cx="60" cy="60" r="20" fill="none" stroke="#22d3ee" stroke-width="2" stroke-dasharray="3 5" opacity="0.6"/>
+  <circle cx="60" cy="60" r="12" fill="#030712"/>
+  <circle cx="55" cy="55" r="3" fill="#fff" opacity="0.9"/>
+  <circle cx="30" cy="22" r="2.5" fill="#a855f7" opacity="0.8"/>
+  <circle cx="90" cy="24" r="2" fill="#22d3ee" opacity="0.8"/>
+</svg>
