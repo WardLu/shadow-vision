@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">影瞳 Shadow Vision 六大视觉工具</title>
+  <desc id="desc">六张工具卡：vision_ocr 提取文字、vision_inspect 描述与问答、vision_annotate 理解标注、vision_layout 分析布局、vision_reconstruct 截图复刻、vision_compare 多图对比。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0e14"/>
+      <stop offset="1" stop-color="#10141d"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="460" rx="24" fill="url(#bg)"/>
+
+  <g id="card-ocr" transform="translate(56 40)">
+    <rect width="346" height="176" rx="14" fill="#12161f" stroke="#1f2733" stroke-width="1.5"/>
+    <circle cx="24" cy="28" r="5" fill="#22d3ee"/>
+    <text x="42" y="34" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24" font-weight="700" fill="#22d3ee">vision_ocr</text>
+    <text x="24" y="66" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#64748b">EXTRACT TEXT</text>
+    <line x1="24" y1="82" x2="322" y2="82" stroke="#1f2733" stroke-width="1"/>
+    <text x="24" y="116" font-size="18" fill="#c6cddb" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">从截图、票据、文档中提取文字</text>
+    <text x="24" y="150" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#8a93a6">receipt.png → "总计 ¥48.50"</text>
+  </g>
+
+  <g id="card-inspect" transform="translate(426 40)">
+    <rect width="346" height="176" rx="14" fill="#12161f" stroke="#1f2733" stroke-width="1.5"/>
+    <circle cx="24" cy="28" r="5" fill="#818cf8"/>
+    <text x="42" y="34" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24" font-weight="700" fill="#818cf8">vision_inspect</text>
+    <text x="24" y="66" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#64748b">DESCRIBE &amp; Q&amp;A</text>
+    <line x1="24" y1="82" x2="322" y2="82" stroke="#1f2733" stroke-width="1"/>
+    <text x="24" y="116" font-size="18" fill="#c6cddb" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">描述图片，或回答图片问题</text>
+    <text x="24" y="150" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#8a93a6">ui.jpg → "CTA 对比度偏低"</text>
+  </g>
+
+  <g id="card-annotate" transform="translate(796 40)">
+    <rect width="346" height="176" rx="14" fill="#12161f" stroke="#1f2733" stroke-width="1.5"/>
+    <circle cx="24" cy="28" r="5" fill="#a855f7"/>
+    <text x="42" y="34" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24" font-weight="700" fill="#a855f7">vision_annotate</text>
+    <text x="24" y="66" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#64748b">ANNOTATION</text>
+    <line x1="24" y1="82" x2="322" y2="82" stroke="#1f2733" stroke-width="1"/>
+    <text x="24" y="116" font-size="18" fill="#c6cddb" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">理解圈选、箭头、下划线等标注</text>
+    <text x="24" y="150" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#8a93a6">marked.png → 结构化 JSON</text>
+  </g>
+
+  <g id="card-layout" transform="translate(56 240)">
+    <rect width="346" height="176" rx="14" fill="#12161f" stroke="#1f2733" stroke-width="1.5"/>
+    <circle cx="24" cy="28" r="5" fill="#57d6c7"/>
+    <text x="42" y="34" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24" font-weight="700" fill="#57d6c7">vision_layout</text>
+    <text x="24" y="66" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#64748b">LAYOUT STRUCTURE</text>
+    <line x1="24" y1="82" x2="322" y2="82" stroke="#1f2733" stroke-width="1"/>
+    <text x="24" y="116" font-size="18" fill="#c6cddb" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">分析界面布局结构与元素关系</text>
+    <text x="24" y="150" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#8a93a6">ui.png → bbox + 关系</text>
+  </g>
+
+  <g id="card-reconstruct" transform="translate(426 240)">
+    <rect width="346" height="176" rx="14" fill="#12161f" stroke="#1f2733" stroke-width="1.5"/>
+    <circle cx="24" cy="28" r="5" fill="#22d3ee"/>
+    <text x="42" y="34" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24" font-weight="700" fill="#22d3ee">vision_reconstruct</text>
+    <text x="24" y="66" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#64748b">CODE GENERATION</text>
+    <line x1="24" y1="82" x2="322" y2="82" stroke="#1f2733" stroke-width="1"/>
+    <text x="24" y="116" font-size="18" fill="#c6cddb" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">把截图复刻为 html / react / svg</text>
+    <text x="24" y="150" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#8a93a6">design.png → HTML/CSS</text>
+  </g>
+
+  <g id="card-compare" transform="translate(796 240)">
+    <rect width="346" height="176" rx="14" fill="#12161f" stroke="#1f2733" stroke-width="1.5"/>
+    <circle cx="24" cy="28" r="5" fill="#a855f7"/>
+    <text x="42" y="34" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24" font-weight="700" fill="#a855f7">vision_compare</text>
+    <text x="24" y="66" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#64748b">MULTI-IMAGE</text>
+    <line x1="24" y1="82" x2="322" y2="82" stroke="#1f2733" stroke-width="1"/>
+    <text x="24" y="116" font-size="18" fill="#c6cddb" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">一次调用分析多张关联图片</text>
+    <text x="24" y="150" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#8a93a6">a.png + b.png → diff</text>
+  </g>
+</svg>

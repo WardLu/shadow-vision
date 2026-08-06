@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
   <title id="title">影瞳 Shadow Vision — 开源 MCP 视觉服务</title>
-  <desc id="desc">赛博技术风 Hero：双瞳 LOGO + 大标题 + 终端命令演示 + 后端支持标签。</desc>
+  <desc id="desc">科技霓虹风 Hero：双瞳 LOGO + 大标题 + 六大视觉工具 + 终端命令演示 + 四后端支持。</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0b0e14"/>
@@ -19,69 +19,62 @@
       <feGaussianBlur stdDeviation="2.5" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="6" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
   </defs>
 
-  <rect width="1200" height="420" rx="20" fill="url(#bg)"/>
+  <rect width="1200" height="430" rx="20" fill="url(#bg)"/>
 
   <!-- 背景装饰：右下角淡光晕 -->
-  <circle cx="1000" cy="340" r="120" fill="#22d3ee" opacity="0.04"/>
-  <circle cx="950" cy="300" r="80" fill="#a855f7" opacity="0.04"/>
+  <circle cx="1010" cy="350" r="120" fill="#22d3ee" opacity="0.04"/>
+  <circle cx="960" cy="310" r="80" fill="#a855f7" opacity="0.04"/>
 
   <!-- 左上角装饰线 -->
   <g stroke="#1e293b" stroke-width="1">
     <path d="M24 40 L24 24 L40 24" fill="none" stroke-linecap="round"/>
-    <path d="M1176 396 L1176 380 L1160 380" fill="none" stroke-linecap="round"/>
+    <path d="M1176 406 L1176 390 L1160 390" fill="none" stroke-linecap="round"/>
   </g>
 
   <!-- 左侧：LOGO + 标题区 -->
   <g transform="translate(72 64)">
     <!-- LOGO 行 -->
     <g transform="translate(0 0)">
-      <!-- LOGO (96px 高，scaled) -->
-      <g transform="scale(1)">
-        <!-- 后眼（右上紫色阴影） -->
+      <g transform="scale(0.72)">
         <path d="M28 46 C28 36 40 28 56 28 C72 28 84 36 84 46 C84 56 72 64 56 64 C40 64 28 56 28 46 Z"
-              fill="none" stroke="#a855f7" stroke-width="4" stroke-linejoin="round" opacity="0.4"/>
-        <circle cx="56" cy="46" r="11" fill="#a855f7" opacity="0.15"/>
-        <!-- 前眼（主视） -->
+              fill="none" stroke="#a855f7" stroke-width="4" stroke-linejoin="round" opacity="0.42"/>
+        <circle cx="56" cy="46" r="11" fill="#a855f7" opacity="0.18"/>
         <path d="M22 66 C22 52 36 42 54 42 C72 42 86 52 86 66 C86 80 72 90 54 90 C36 90 22 80 22 66 Z"
               fill="none" stroke="url(#brandGrad)" stroke-width="5" stroke-linejoin="round"/>
         <circle cx="54" cy="66" r="13" fill="url(#irisGrad)" filter="url(#glow)"/>
         <circle cx="54" cy="66" r="13" stroke="#030712" stroke-width="2" opacity="0.5"/>
         <circle cx="54" cy="66" r="5.5" fill="#030712"/>
         <circle cx="50" cy="62" r="2.2" fill="#fff" opacity="0.9"/>
-        <!-- 速度点缀 -->
-        <path d="M14 18 H26" stroke="#a855f7" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-        <path d="M94 102 H104" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+      </g>
+      <!-- 元标签 + 版本徽标 -->
+      <g transform="translate(96 10)">
+        <rect width="232" height="26" rx="13" fill="none" stroke="#334155" stroke-width="1.5"/>
+        <text x="16" y="17" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" fill="#94a3b8" letter-spacing="1.2">OPEN-SOURCE · MCP VISION</text>
+        <rect x="244" y="0" width="66" height="26" rx="13" fill="#0f172a" stroke="#22d3ee" stroke-width="1.2"/>
+        <text x="252" y="17" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" fill="#22d3ee">v0.2.0</text>
       </g>
     </g>
 
-    <!-- 元标签 -->
-    <g transform="translate(120 12)">
-      <rect width="220" height="26" rx="13" fill="none" stroke="#334155" stroke-width="1.5"/>
-      <text x="16" y="17" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" fill="#94a3b8" letter-spacing="1.2">OPEN-SOURCE · MCP SERVER</text>
-    </g>
-
     <!-- 主标题 -->
-    <text x="0" y="175" font-size="76" font-weight="700" fill="#e8edf6"
+    <text x="0" y="178" font-size="76" font-weight="700" fill="#e8edf6"
           font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">Shadow Vision</text>
 
-    <!-- 副标题：中文 + 英文标语 -->
-    <text x="0" y="215" font-size="26" font-weight="600" fill="#22d3ee"
+    <!-- 副标题 -->
+    <text x="0" y="218" font-size="26" font-weight="600" fill="#22d3ee"
           font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">影瞳</text>
-    <text x="62" y="215" font-size="20" fill="#8a93a6"
+    <text x="58" y="218" font-size="20" fill="#8a93a6"
           font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">· 给纯文本 LLM 一双眼睛</text>
 
-    <!-- 一句价值 -->
-    <text x="0" y="252" font-size="17" fill="#94a3b8"
-          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">OCR · 图像理解 · 布局分析 · 截图复刻 · 多图对比</text>
+    <!-- 六大工具价值行 -->
+    <text x="0" y="256" font-size="18" fill="#94a3b8"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">OCR · 图像理解 · 标注解析 · 布局分析</text>
+    <text x="0" y="280" font-size="18" fill="#94a3b8"
+          font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,sans-serif">截图复刻 · 多图对比</text>
 
     <!-- 后端支持标签 -->
-    <g transform="translate(0 280)">
+    <g transform="translate(0 306)">
       <rect width="84" height="28" rx="6" fill="#0f172a" stroke="#22d3ee" stroke-width="1.2"/>
       <text x="12" y="19" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12" fill="#22d3ee">Ollama</text>
 
@@ -97,15 +90,14 @@
   </g>
 
   <!-- 右侧：终端窗口 -->
-  <g transform="translate(630 56)">
-    <!-- 窗口外框 -->
-    <rect width="520" height="300" rx="12" fill="#12161f" stroke="#1f2733" stroke-width="1.5"/>
+  <g transform="translate(628 56)">
+    <rect width="520" height="318" rx="12" fill="#12161f" stroke="#1f2733" stroke-width="1.5"/>
 
     <!-- 标题栏 -->
     <circle cx="20" cy="20" r="6" fill="#ff5f57"/>
     <circle cx="40" cy="20" r="6" fill="#febc2e"/>
     <circle cx="60" cy="20" r="6" fill="#28c840"/>
-    <text x="84" y="26" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12" fill="#64748b">~ shadow-vision</text>
+    <text x="84" y="26" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12" fill="#64748b">~ shadow-vision · v0.2.0</text>
     <line x1="0" y1="40" x2="520" y2="40" stroke="#1f2733" stroke-width="1.5"/>
 
     <!-- 命令 1: OCR -->
@@ -116,18 +108,21 @@
     <line x1="22" y1="110" x2="498" y2="110" stroke="#1f2733" stroke-width="1"/>
 
     <!-- 命令 2: inspect -->
-    <text x="22" y="136" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#22d3ee">→ vision_inspect("ui.jpg")</text>
-    <text x="22" y="160" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#e8edf6">"Hero 使用 3 列栅格，主 CTA 对比度偏低。"</text>
+    <text x="22" y="138" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#818cf8">→ vision_inspect("ui.jpg")</text>
+    <text x="22" y="162" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#e8edf6">"Hero 使用 3 列栅格，主 CTA 对比度偏低。"</text>
 
     <!-- 分隔 -->
-    <line x1="22" y1="174" x2="498" y2="174" stroke="#1f2733" stroke-width="1"/>
+    <line x1="22" y1="176" x2="498" y2="176" stroke="#1f2733" stroke-width="1"/>
 
-    <!-- 命令 3: reconstruct -->
-    <text x="22" y="200" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#22d3ee">→ vision_reconstruct("design.png")</text>
-    <text x="22" y="224" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#a855f7">"已生成 HTML/CSS，视觉偏差 2.1%"</text>
+    <!-- 命令 3: annotate -->
+    <text x="22" y="204" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#a855f7">→ vision_annotate("marked.png")</text>
+    <text x="22" y="228" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#e8edf6">"检测到 3 处圈选 + 2 条箭头标注"</text>
 
-    <!-- 底部提示行 -->
-    <line x1="0" y1="260" x2="520" y2="260" stroke="#1f2733" stroke-width="1.5"/>
-    <text x="22" y="284" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12" fill="#475569">// 本地 Ollama · OpenAI-compat（智谱/通义/月之暗面）· Anthropic · Gemini</text>
+    <!-- 分隔 -->
+    <line x1="22" y1="242" x2="498" y2="242" stroke="#1f2733" stroke-width="1"/>
+
+    <!-- 命令 4: reconstruct -->
+    <text x="22" y="270" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#57d6c7">→ vision_reconstruct("design.png")</text>
+    <text x="22" y="294" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#a855f7">"已生成 HTML/CSS，视觉偏差 2.1%"</text>
   </g>
 </svg>
