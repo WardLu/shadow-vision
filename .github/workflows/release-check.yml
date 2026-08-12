@@ -3,12 +3,21 @@ on:
   pull_request:
   push:
     branches: [main]
+    tags: ["v*"]
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
       - uses: astral-sh/setup-uv@v6
+      - name: Validate release metadata
+        env:
+          RELEASE_TAG: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
+        run: python scripts/validate_release.py
       - run: uv build
       - run: uvx twine check dist/*
       - run: uv run python -c "import vision_mcp; print(vision_mcp.__version__)"
+      - run: python -m unittest tests/test_release_metadata.py
