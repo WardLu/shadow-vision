@@ -17,3 +17,10 @@ build/
 .playwright-mcp/
 preview/
 *-preview.png
+
+# Local AI assistant config (machine-specific).
+AGENTS.md
+CLAUDE.md
+
+# macOS metadata
+.DS_Store
