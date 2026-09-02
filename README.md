@@ -1,40 +1,41 @@
-
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="影瞳 Shadow Vision — 开源 MCP 视觉服务，让纯文本 LLM 获得图像理解、OCR 与视觉分析能力">
+  <img src="./assets/readme/hero.svg" width="100%" alt="Shadow Vision — Open-source MCP vision service granting text-only LLMs image understanding, OCR, and visual analysis capabilities">
 </p>
 
-# 影瞳 · Shadow Vision
+# Shadow Vision
 
-给纯文本 LLM 添加一双眼睛。影瞳是一个开源 MCP 视觉服务，让 AI Agent 通过 `vision_ocr` / `vision_inspect` / `vision_annotate` / `vision_layout` / `vision_reconstruct` / `vision_compare` 看见、理解并分析真实世界的信息，无需切换宿主文本模型。
+**English** | [简体中文](./README.zh-CN.md)
 
-## 为什么不同
+Give text-only LLMs a pair of eyes. Shadow Vision is an open-source MCP vision service that enables AI Agents to see, understand, and analyze real-world information through `vision_ocr`, `vision_inspect`, `vision_annotate`, `vision_layout`, `vision_reconstruct`, and `vision_compare` — without switching host models.
 
-- **MCP 原生**：适配 Codex、Claude Desktop、Cursor 及其他 MCP 客户端
-- **可插拔后端**：Ollama、OpenAI-compatible、Anthropic、Gemini
-- **本地优先**：使用 Ollama 时图片和推理都可以留在本机
-- **输入多样**：支持本地文件路径、base64 图片数据或远程 HTTP(S) URL
+## Why It's Different
 
-## 工作原理
+- **MCP-Native**: Compatible with Codex, Claude Desktop, Cursor, and other MCP clients
+- **Pluggable Backends**: Ollama, OpenAI-compatible, Anthropic, Gemini
+- **Local-First**: Keep images and inference entirely on your machine when using Ollama
+- **Versatile Input**: Supports local file paths, base64 image data, or remote HTTP(S) URLs
+
+## How It Works
 
 <p align="center">
-  <img src="./assets/readme/workflow.svg" width="100%" alt="纯文本 LLM 通过 MCP 调用 vision_ocr 与 vision_inspect，再连接到 Ollama、OpenAI-compatible、Anthropic 或 Gemini">
+  <img src="./assets/readme/workflow.svg" width="100%" alt="Text-only LLM calls vision_ocr and vision_inspect via MCP, which connects to Ollama, OpenAI-compatible, Anthropic, or Gemini">
 </p>
 
-文本模型通过 MCP 调用影瞳的两个工具，影瞳把图片和提示词转发到配置的视觉后端，再把文字结果返回给模型。
+The text model calls Shadow Vision tools via MCP. Shadow Vision forwards the image and prompt to the configured vision backend and returns the text result back to the model.
 
-## 快速开始
+## Quick Start
 
-### 0. 一键运行（免 clone）
+### 0. One-Click Run (No Clone Needed)
 
-不需要 clone 仓库，直接运行：
+No need to clone the repository. Run directly:
 
 ```bash
-uvx shadow-vision          # Python / uv 用户（推荐）
-# 或 Node 习惯用户
-npx shadow-vision       # 需本机已装 uv
+uvx shadow-vision          # Python / uv users (recommended)
+# Or for Node users
+npx shadow-vision       # Requires uv installed locally
 ```
 
-MCP 配置示例：
+MCP configuration example:
 
 ```toml
 [mcp_servers.vision]
@@ -43,11 +44,11 @@ args = ["shadow-vision"]
 env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b-instruct" }
 ```
 
-> `npx shadow-vision` 是一个薄壳，内部调用 `uvx shadow-vision`，需要本机已安装 [uv](https://docs.astral.sh/uv/)。两种入口行为一致。
+> `npx shadow-vision` is a thin wrapper that invokes `uvx shadow-vision` internally and requires [uv](https://docs.astral.sh/uv/) installed on your machine. Both entry points behave identically.
 
-### 1. 源码安装（开发 / 自托管）
+### 1. Install from Source (Development / Self-Hosting)
 
-需要 Python 3.11+ 与 [uv](https://docs.astral.sh/uv/)：
+Requires Python 3.11+ and [uv](https://docs.astral.sh/uv/):
 
 ```bash
 git clone https://github.com/WardLu/shadow-vision.git
@@ -55,9 +56,9 @@ cd shadow-vision
 uv sync
 ```
 
-### 2. 使用本地 Ollama（推荐新手）
+### 2. Use Local Ollama (Recommended for Beginners)
 
-先安装 [Ollama](https://ollama.com/download)。如果没有使用 Ollama 桌面应用，可手动启动服务：
+First install [Ollama](https://ollama.com/download). If not running the Ollama desktop app, start the service manually:
 
 ```bash
 ollama serve
@@ -65,17 +66,17 @@ ollama pull qwen3-vl:2b-instruct
 ollama list
 ```
 
-`qwen3-vl:2b-instruct` 是默认视觉模型（非思考版，响应更快）。若需要更强的推理-思考能力，可改用 `qwen3-vl:2b`（thinking 版）等；也可以把 `VISION_MODEL` 换成 `ollama list` 中其他已经下载的视觉模型。
+`qwen3-vl:2b-instruct` is the default vision model (non-thinking version, faster response). If you need stronger reasoning/thinking capability, switch to `qwen3-vl:2b` (thinking version); or change `VISION_MODEL` to any other vision model listed in `ollama list`.
 
-### 3. 注册为 MCP 服务
+### 3. Register as an MCP Service
 
-Codex 可以直接执行：
+Codex can run directly:
 
 ```bash
 codex mcp add vision -- uv run shadow-vision
 ```
 
-或者写入 `~/.codex/config.toml`：
+Or add to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.vision]
@@ -86,87 +87,87 @@ cwd = "/path/to/shadow-vision"
 env = { VISION_BACKEND = "ollama", VISION_MODEL = "qwen3-vl:2b-instruct", OLLAMA_URL = "http://127.0.0.1:11434/api/chat" }
 ```
 
-重启 MCP 客户端后，直接让模型“看一下这张图片”即可。
+After restarting your MCP client, simply ask the model to "take a look at this image".
 
-## 切换模型和后端
+## Switching Models and Backends
 
-`VISION_BACKEND` 决定调用方式，`VISION_MODEL` 决定具体视觉模型。修改 MCP 配置中的环境变量后，重启客户端即可。
+`VISION_BACKEND` determines how requests are routed, and `VISION_MODEL` specifies the vision model. Update the environment variables in your MCP configuration and restart your client.
 
-切换本地模型：
-
-```toml
-env = { VISION_BACKEND = "ollama", VISION_MODEL = "你已下载的视觉模型", OLLAMA_URL = "http://127.0.0.1:11434/api/chat" }
-```
-
-切换到 OpenAI-compatible 服务：
+Switch to a local model:
 
 ```toml
-env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "服务端提供的视觉模型名", OPENAI_API_BASE = "https://api.example.com/v1", OPENAI_API_KEY = "sk-...", OPENAI_MAX_TOKENS = "1024", OPENAI_MAX_TOKENS_FIELD = "max_tokens" }
+env = { VISION_BACKEND = "ollama", VISION_MODEL = "your-downloaded-vision-model", OLLAMA_URL = "http://127.0.0.1:11434/api/chat" }
 ```
 
-`OPENAI_*` 表示 OpenAI Chat Completions 兼容协议，也适用于 LM Studio、vLLM 和其他提供 `/v1/chat/completions` 的服务。
-
-国内平台的免费视觉示例（智谱 GLM-4V-Flash）：
+Switch to an OpenAI-compatible service:
 
 ```toml
-env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "glm-4v-flash", OPENAI_API_BASE = "https://open.bigmodel.cn/api/paas/v4", OPENAI_API_KEY = "你的智谱key" }
+env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "provider-vision-model-name", OPENAI_API_BASE = "https://api.example.com/v1", OPENAI_API_KEY = "sk-...", OPENAI_MAX_TOKENS = "1024", OPENAI_MAX_TOKENS_FIELD = "max_tokens" }
 ```
 
-其他 OpenAI 兼容的国内平台只需改 `OPENAI_API_BASE` 与 `VISION_MODEL`：硅基流动 `https://api.siliconflow.cn/v1`、阿里百炼 `https://dashscope.aliyuncs.com/compatible-mode/v1`、阶跃星辰 `https://api.stepfun.com/v1`、腾讯混元 `https://api.hunyuan.cloud.tencent.com/v1`、Moonshot `https://api.moonshot.cn/v1` 等。
+`OPENAI_*` denotes the OpenAI Chat Completions compatible protocol, which also applies to LM Studio, vLLM, and any other service offering `/v1/chat/completions`.
 
-> **隐私提示**：API 后端（含国内平台）会把图片内容以 base64 发送到对应厂商服务器。机密/敏感图片建议改用本地 `ollama` 后端，避免数据外发。
+Free vision example for Chinese platforms (Zhipu GLM-4V-Flash):
 
-## 配置后端
+```toml
+env = { VISION_BACKEND = "openai_compatible", VISION_MODEL = "glm-4v-flash", OPENAI_API_BASE = "https://open.bigmodel.cn/api/paas/v4", OPENAI_API_KEY = "your-zhipu-key" }
+```
 
-### 通用变量
+Other OpenAI-compatible providers only require modifying `OPENAI_API_BASE` and `VISION_MODEL`: SiliconFlow `https://api.siliconflow.cn/v1`, Alibaba Bailian `https://dashscope.aliyuncs.com/compatible-mode/v1`, StepFun `https://api.stepfun.com/v1`, Tencent Hunyuan `https://api.hunyuan.cloud.tencent.com/v1`, Moonshot `https://api.moonshot.cn/v1`, etc.
 
-| 变量 | 默认值 | 说明 |
+> **Privacy Notice**: API backends (including third-party platforms) send image content as base64 to the respective provider's servers. For confidential or sensitive images, use the local `ollama` backend to prevent external data transfer.
+
+## Configuring Backends
+
+### General Variables
+
+| Variable | Default | Description |
 |---|---|---|
 | `VISION_BACKEND` | `ollama` | `ollama` / `openai_compatible` / `anthropic` / `gemini` |
-| `VISION_MODEL` | `qwen3-vl:2b-instruct` | 视觉模型名称 |
-| `VISION_TIMEOUT` | `180` | 读取超时（秒），`VISION_READ_TIMEOUT` 的兼容别名 |
-| `VISION_CONNECT_TIMEOUT` | `10` | 连接超时（秒） |
-| `VISION_READ_TIMEOUT` | `180` | 读取超时（秒） |
-| `VISION_MAX_RETRIES` | `2` | 瞬时失败/5xx 的重试次数（总请求 = 1 + 此值） |
-| `VISION_RETRY_BASE_DELAY` | `1.0` | 指数退避基础秒数 |
+| `VISION_MODEL` | `qwen3-vl:2b-instruct` | Vision model name |
+| `VISION_TIMEOUT` | `180` | Read timeout (seconds), compatibility alias for `VISION_READ_TIMEOUT` |
+| `VISION_CONNECT_TIMEOUT` | `10` | Connect timeout (seconds) |
+| `VISION_READ_TIMEOUT` | `180` | Read timeout (seconds) |
+| `VISION_MAX_RETRIES` | `2` | Retry attempts for transient / 5xx errors (total requests = 1 + this value) |
+| `VISION_RETRY_BASE_DELAY` | `1.0` | Exponential backoff base delay in seconds |
 
-### 高级配置（图片与安全）
+### Advanced Configuration (Images & Security)
 
-| 变量 | 默认值 | 说明 |
+| Variable | Default | Description |
 |---|---|---|
-| `VISION_AUTO_COMPRESS` | `true` | 是否自动压缩大图 |
-| `VISION_MAX_LONG_EDGE` | `1800` | 压缩阈值：长边像素 |
-| `VISION_MAX_PIXELS` | `3500000` | 压缩阈值：总像素 |
-| `VISION_COMPRESS_QUALITY` | `85` | JPEG 重编码质量 |
-| `VISION_AUTO_TILE` | `true` | 是否对超长图自动切块 |
-| `VISION_TILE_LONG_EDGE` | `3600` | 切块阈值：长边像素 |
-| `VISION_TILE_OVERLAP` | `100` | 切块重叠像素 |
-| `VISION_MAX_TILES` | `8` | 单图切块数上限 |
-| `VISION_TASK_ROUTING` | `true` | 是否启用 `vision_inspect` 启发式任务路由 |
-| `VISION_ALLOW_REMOTE_URL` | `true` | 是否启用远程 URL 图片输入 |
-| `VISION_MAX_REMOTE_SIZE` | `20971520` | 远程图片最大字节数（20MB） |
-| `VISION_FETCH_TIMEOUT` | `30` | 远程获取超时（秒） |
-| `VISION_SSRF_ALLOW_PRIVATE` | `false` | 是否允许私网/内网地址（强烈不建议开启） |
-| `VISION_MAX_BATCH_IMAGES` | `5` | `vision_compare` 单次最多图片数 |
+| `VISION_AUTO_COMPRESS` | `true` | Whether to automatically compress large images |
+| `VISION_MAX_LONG_EDGE` | `1800` | Compression threshold: long-edge pixels |
+| `VISION_MAX_PIXELS` | `3500000` | Compression threshold: total pixels |
+| `VISION_COMPRESS_QUALITY` | `85` | JPEG re-encoding quality |
+| `VISION_AUTO_TILE` | `true` | Whether to automatically tile extra-long images |
+| `VISION_TILE_LONG_EDGE` | `3600` | Tiling threshold: long-edge pixels |
+| `VISION_TILE_OVERLAP` | `100` | Tiling overlap pixels |
+| `VISION_MAX_TILES` | `8` | Maximum number of tiles per image |
+| `VISION_TASK_ROUTING` | `true` | Whether to enable heuristic task routing for `vision_inspect` |
+| `VISION_ALLOW_REMOTE_URL` | `true` | Whether to allow remote URL image inputs |
+| `VISION_MAX_REMOTE_SIZE` | `20971520` | Maximum remote image size in bytes (20MB) |
+| `VISION_FETCH_TIMEOUT` | `30` | Remote fetch timeout (seconds) |
+| `VISION_SSRF_ALLOW_PRIVATE` | `false` | Whether to allow private / intranet addresses (strongly discouraged) |
+| `VISION_MAX_BATCH_IMAGES` | `5` | Maximum number of images per `vision_compare` call |
 
 ### Ollama
 
-| 变量 | 默认值 | 说明 |
+| Variable | Default | Description |
 |---|---|---|
-| `OLLAMA_URL` | `http://127.0.0.1:11434/api/chat` | Ollama 对话端点 |
+| `OLLAMA_URL` | `http://127.0.0.1:11434/api/chat` | Ollama chat endpoint |
 
-使用前执行 `ollama pull <视觉模型名>` 下载模型。
+Run `ollama pull <vision-model-name>` before use to download the model.
 
 ### OpenAI-compatible
 
-| 变量 | 默认值 | 说明 |
+| Variable | Default | Description |
 |---|---|---|
-| `OPENAI_API_BASE` | `http://127.0.0.1:11434/v1` | 兼容服务基础地址 |
-| `OPENAI_API_KEY` | 空 | 本地服务通常可留空 |
-| `OPENAI_MAX_TOKENS` | 未设置 | 可选输出 token 上限；未设置时不发送 token 限制字段 |
-| `OPENAI_MAX_TOKENS_FIELD` | `max_tokens` | 可选：`max_tokens` 或 `max_completion_tokens` |
+| `OPENAI_API_BASE` | `http://127.0.0.1:11434/v1` | Compatible service base URL |
+| `OPENAI_API_KEY` | empty | Usually left blank for local services |
+| `OPENAI_MAX_TOKENS` | unset | Optional max output tokens; omits token limit field when unset |
+| `OPENAI_MAX_TOKENS_FIELD` | `max_tokens` | Optional: `max_tokens` or `max_completion_tokens` |
 
-不同服务支持的 token 字段不完全一致：支持旧字段就使用 `max_tokens`，只支持新版字段就改成 `max_completion_tokens`，两个字段都不接受时不要设置 `OPENAI_MAX_TOKENS`。旧变量名 `VISION_API_BASE`、`VISION_API_KEY`、`VISION_MAX_TOKENS` 和 `VISION_MAX_TOKENS_FIELD` 仍兼容。
+Different providers support different token limit fields: use `max_tokens` for legacy fields, `max_completion_tokens` for newer APIs, or leave `OPENAI_MAX_TOKENS` unset if neither is accepted. Legacy environment variables `VISION_API_BASE`, `VISION_API_KEY`, `VISION_MAX_TOKENS`, and `VISION_MAX_TOKENS_FIELD` remain supported for backward compatibility.
 
 ### Anthropic / Gemini
 
@@ -175,13 +176,13 @@ VISION_BACKEND=anthropic ANTHROPIC_API_KEY=sk-ant-... VISION_MODEL=your-claude-v
 VISION_BACKEND=gemini GEMINI_API_KEY=AIza... VISION_MODEL=your-gemini-vision-model uv run shadow-vision
 ```
 
-Anthropic 还支持 `ANTHROPIC_BASE_URL`、`ANTHROPIC_VERSION` 和 `ANTHROPIC_MAX_TOKENS`；Gemini 还支持 `GEMINI_BASE_URL` 和 `GEMINI_MAX_TOKENS`。
+Anthropic also supports `ANTHROPIC_BASE_URL`, `ANTHROPIC_VERSION`, and `ANTHROPIC_MAX_TOKENS`; Gemini also supports `GEMINI_BASE_URL` and `GEMINI_MAX_TOKENS`.
 
-## 工具
+## Tools
 
 ### `vision_ocr`
 
-从截图、票据、文档或表格中提取文字：
+Extract text from screenshots, invoices/receipts, documents, or tables:
 
 ```python
 vision_ocr(image_path="/tmp/receipt.png")
@@ -189,32 +190,32 @@ vision_ocr(image_path="/tmp/receipt.png")
 
 ### `vision_inspect`
 
-描述图片，或回答关于图片的问题：
+Describe an image, or answer questions about an image:
 
 ```python
 vision_inspect(image_path="/tmp/design.png", question="List any UI bugs you see.")
 ```
 
-两个工具还支持：
+Both tools also support:
 
-- `task`：可选任务提示（`vision_ocr`: `general`/`error`/`table`；`vision_inspect`: `general`/`ui_structure`/`ui_bug`/`chart`）
-- `image_path`：服务器可读的本地图片路径
-- `image_base64` + `mime_type`：base64 编码的图片数据
-- `image_url`：远程 HTTP(S) 图片 URL（自动做 SSRF 防护）
+- `task`: Optional task guidance (`vision_ocr`: `general`/`error`/`table`; `vision_inspect`: `general`/`ui_structure`/`ui_bug`/`chart`)
+- `image_path`: Server-readable local image path
+- `image_base64` + `mime_type`: Base64-encoded image data
+- `image_url`: Remote HTTP(S) image URL (with automatic SSRF protection)
 
-所有图片工具都支持 `image_path` / `image_base64` / `image_url` 三选一输入，优先级：`image_base64` > `image_path` > `image_url`。
+All image tools accept one of `image_path` / `image_base64` / `image_url` as input, with precedence: `image_base64` > `image_path` > `image_url`.
 
 ### `vision_annotate`
 
-识别圈选、箭头、下划线、荧光、涂改、手写文字等标注，输出 `annotation → target` 关系、类型、位置与置信度的结构化 JSON：
+Identify bounding boxes, arrows, underlines, highlights, strikethroughs, handwritten notes, and other user annotations. Outputs structured JSON with `annotation → target` relationships, types, bounding boxes (`bbox`), and confidence scores:
 
 ```python
-vision_annotate(image_path="/tmp/marked.png", focus="按圈选顺序说明改动点")
+vision_annotate(image_path="/tmp/marked.png", focus="Explain changes in order of markup")
 ```
 
 ### `vision_layout`
 
-分析图片/界面布局结构，输出画布、容器、元素 `bbox`、文字样式及元素关系的结构化 JSON：
+Analyze image and UI layout structure, outputting structured JSON with canvas, containers, element bounding boxes (`bbox`), typography styles, and element hierarchy:
 
 ```python
 vision_layout(image_path="/tmp/ui.png")
@@ -222,7 +223,7 @@ vision_layout(image_path="/tmp/ui.png")
 
 ### `vision_reconstruct`
 
-把截图复刻为代码（`html` / `react` / `svg`），生成代码并附模型自检；可选传入 `vision_layout` 的 JSON 作为布局参考：
+Reconstruct screenshots into code (`html` / `react` / `svg`), generating markup along with model self-inspection. Optionally provide JSON from `vision_layout` as layout reference:
 
 ```python
 vision_reconstruct(image_path="/tmp/ui.png", target_format="html", reference_layout="<layout json>")
@@ -230,42 +231,42 @@ vision_reconstruct(image_path="/tmp/ui.png", target_format="html", reference_lay
 
 ### `vision_compare`
 
-一次调用分析多张关联图片（`diff` / `compare` / `sequence`），每张图支持 `label` 便于引用：
+Analyze multiple related images in a single call (`diff` / `compare` / `sequence`), with optional per-image `label` for easy reference:
 
 ```python
-vision_compare(images=[{"image_path": "/tmp/a.png", "label": "改前"}, {"image_path": "/tmp/b.png", "label": "改后"}], task="diff")
+vision_compare(images=[{"image_path": "/tmp/a.png", "label": "before"}, {"image_path": "/tmp/b.png", "label": "after"}], task="diff")
 ```
 
-## 本地模型选择与测评
+## Local Model Selection and Benchmarking
 
-Ollama 模型页可以查看模型包大小、上下文窗口和图像能力，但模型包大小不是最低内存要求。建议从 `qwen3-vl:2b-instruct` 开始（非思考版，延迟低）；如果 OCR 或复杂图表理解不足，再比较 `qwen3-vl:4b`、`qwen3-vl:8b` 或文档 OCR 取向的 `minicpm-v4.5:q4_0`。
+The Ollama model library lists download size, context window, and vision capabilities, but model package size does not represent minimum memory requirements. It is recommended to start with `qwen3-vl:2b-instruct` (non-thinking version, low latency); if OCR or complex chart comprehension is insufficient, benchmark against `qwen3-vl:4b`, `qwen3-vl:8b`, or document-OCR oriented `minicpm-v4.5:q4_0`.
 
-准备 3–5 张真实图片，覆盖 OCR、截图、图表和困难样本，并使用相同提示词比较模型：
+Prepare 3–5 real-world images covering OCR, UI screenshots, charts, and hard edge cases, and compare models using identical prompts:
 
 ```bash
 MODEL=qwen3-vl:2b-instruct
 IMAGE=/absolute/path/to/test.png
 
-time ollama run "$MODEL" "$IMAGE" "请准确抄录图片中的全部文字，只输出文字。"
-time ollama run "$MODEL" "$IMAGE" "请描述图片内容，并列出你不确定的地方。"
+time ollama run "$MODEL" "$IMAGE" "Transcribe all text from the image accurately, outputting only the text."
+time ollama run "$MODEL" "$IMAGE" "Describe the image contents and list any areas of uncertainty."
 ```
 
-记录 OCR 错误数量、关键对象和关系是否正确、幻觉、完整响应延迟，以及 `ollama ps` 中的 processor 状态。先直接测试 Ollama，再通过 `vision_ocr` / `vision_inspect` 测试 MCP 链路，可以区分模型问题和 MCP 配置问题。
+Track OCR error count, accuracy of key objects and relationships, hallucinations, full round-trip latency, and processor status in `ollama ps`. Testing Ollama directly first before testing through `vision_ocr` / `vision_inspect` via MCP helps distinguish model capability limits from MCP configuration issues.
 
-推荐资料：
+Recommended resources:
 
-- [Ollama Vision 文档](https://docs.ollama.com/capabilities/vision)
-- [Ollama Qwen3-VL 模型页](https://ollama.com/library/qwen3-vl)
-- [Qwen3-VL 官方仓库](https://github.com/QwenLM/Qwen3-VL)
-- [MiniCPM-V 4.5 官方评测](https://github.com/OpenBMB/MiniCPM-V/blob/main/docs/minicpm_v4dot5_en.md)
-- [Ollama Context Length 文档](https://docs.ollama.com/context-length)
-- [Ollama Modelfile 参数文档](https://docs.ollama.com/modelfile)
+- [Ollama Vision Documentation](https://docs.ollama.com/capabilities/vision)
+- [Ollama Qwen3-VL Model Page](https://ollama.com/library/qwen3-vl)
+- [Qwen3-VL Official Repository](https://github.com/QwenLM/Qwen3-VL)
+- [MiniCPM-V 4.5 Official Evaluation](https://github.com/OpenBMB/MiniCPM-V/blob/main/docs/minicpm_v4dot5_en.md)
+- [Ollama Context Length Documentation](https://docs.ollama.com/context-length)
+- [Ollama Modelfile Documentation](https://docs.ollama.com/modelfile)
 
-## 支持的 Agent
+## Supported Agents
 
-所有 Agent 都启动同一命令：`uv run shadow-vision`。
+All agents launch the same command: `uv run shadow-vision`.
 
-| Agent | 配置文件 |
+| Agent | Configuration File |
 |---|---|
 | Codex | `~/.codex/config.toml` |
 | Claude Code | `.mcp.json` |
@@ -275,7 +276,7 @@ time ollama run "$MODEL" "$IMAGE" "请描述图片内容，并列出你不确定
 | Claude Desktop | `claude_desktop_config.json` |
 | OpenCode | `opencode.json` |
 
-## 开发
+## Development
 
 ```bash
 uv sync
@@ -283,22 +284,22 @@ uv run python -c "import vision_mcp.server; print('ok')"
 uv run pytest
 ```
 
-## 联系我
+## Contact
 
-如果你对 B 端产品、AI 产品开发、供应链数字化或 Shadow 系列产品感兴趣，可以联系我：
+If you are interested in B2B products, AI product development, supply chain digitization, or Shadow series products, feel free to get in touch:
 
-- **X（Twitter）**：[@Gollumgulu](https://x.com/Gollumgulu)
-- **微信公众号**：Ward 的 AI 产品实战
+- **X (Twitter)**: [@Gollumgulu](https://x.com/Gollumgulu)
+- **WeChat Official Account**: Ward 的 AI 产品实战
 
 <p align="center">
-  <img src="./assets/readme/wechat-qr.png" width="158" alt="Ward 的 AI 产品实战微信公众号二维码">
+  <img src="./assets/readme/wechat-qr.png" width="158" alt="Ward's AI Product in Action WeChat QR Code">
 </p>
 
-- **小红书 / 微博 / 抖音**：全网同名「Ward 的 AI 产品实战」—— [小红书](https://xhslink.cn/m/4W1NWyRrxv5) · [微博](https://weibo.com/u/8344390431) · [抖音](https://v.douyin.com/1y06PMohfoE/)
-- **产品主页**：[Shadow Nexus](https://www.shadow.wang/)
-- **Email**：[wardlu@126.com](mailto:wardlu@126.com)
+- **Xiaohongshu / Weibo / Douyin**: "Ward 的 AI 产品实战" across platforms — [Xiaohongshu](https://xhslink.cn/m/4W1NWyRrxv5) · [Weibo](https://weibo.com/u/8344390431) · [Douyin](https://v.douyin.com/1y06PMohfoE/)
+- **Product Homepage**: [Shadow Nexus](https://www.shadow.wang/)
+- **Email**: [wardlu@126.com](mailto:wardlu@126.com)
 
-> 可接 1v1 咨询和项目陪跑：产品诊断 · AI 实施 · 工作流 / Skill · 系统定制
+> Open for 1-on-1 consulting and advisory: Product Diagnostics · AI Implementation · Workflows / Skills · Custom Solutions
 
 ## License
 

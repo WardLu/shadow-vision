@@ -5,7 +5,14 @@ __pycache__/
 dist/
 build/
 .env
+
+# Internal design & planning documents
+docs/
 /ROADMAP.md
+
+# Design drafts & asset candidates
+assets/logo-candidates/
+assets/readme/hero-variants/
 
 # Local editor / MCP configuration contains machine-specific absolute paths.
 .mcp.json
@@ -21,6 +28,10 @@ preview/
 # Local AI assistant config (machine-specific).
 AGENTS.md
 CLAUDE.md
+
+# Local helper scripts
+scripts/audit_repo_i18n.py
+scripts/generate_preview.py
 
 # macOS metadata
 .DS_Store

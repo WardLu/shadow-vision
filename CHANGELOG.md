@@ -1,30 +1,32 @@
 # Changelog
 
-本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 与语义化版本。
+**English** | [简体中文](./CHANGELOG.zh-CN.md)
+
+This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and Semantic Versioning.
 
 ## [0.1.1] - 2026-08-07
 
 ### Fixed
-- 修复 MCP 配置/模板命令入口 `vision-mcp` → `shadow-vision`，此前 `uv run vision-mcp` 会 `Failed to spawn` 导致 MCP 无法启动。
+- Fixed MCP configuration and template command entry point from `vision-mcp` to `shadow-vision`; previously `uv run vision-mcp` failed with `Failed to spawn`, preventing MCP startup.
 
 ### Changed
-- 默认视觉模型 `qwen3-vl:2b` → `qwen3-vl:2b-instruct`（非思考版，延迟与 token 大幅下降）。
+- Changed default vision model from `qwen3-vl:2b` to `qwen3-vl:2b-instruct` (non-thinking version, significantly reducing latency and token usage).
 
 ### Added
-- `VISION_OLLAMA_NO_THINK`：Ollama 后端在 prompt 末尾追加 `/no_think`（默认开启，对支持该指令的 Qwen3 模型生效）。
-- README 与配置模板新增智谱 `glm-4v-flash` 等国内 OpenAI 兼容平台接入示例。
-- 品牌视觉：新增产品 LOGO（07e 双瞳纵向细长版，shadow-nexus 系列设计语言）+ 重新设计赛博风 Hero 横幅 + 横版字标。
+- `VISION_OLLAMA_NO_THINK`: Ollama backend appends `/no_think` to prompt endings (enabled by default, applies to Qwen3 models supporting this instruction).
+- Added integration examples for Chinese OpenAI-compatible platforms such as Zhipu `glm-4v-flash` in README and configuration templates.
+- Brand visuals: Added product logo (07e double-eye vertical slim edition, following shadow-nexus design language) + redesigned cyberpunk Hero banner + horizontal wordmark.
 
 ## [0.1.0] - 2026-08-05
 
 ### Added
-- 初始版本：`vision_ocr` / `vision_inspect`，四后端（Ollama / OpenAI-compatible / Anthropic / Gemini）
-- 图片自动压缩 + 多裁剪（R1）
-- 用户标注感知 `vision_annotate`（R3）
-- 布局分析 `vision_layout` 与截图复刻 `vision_reconstruct`（R2 v1 开环）
-- 内置重试与超时细分（R4）
-- 任务引导路由 `task`（M2）
-- 远程 URL 图片输入 + SSRF 防护 `image_url`（F1）
-- 多图批量理解 `vision_compare`（F3）
-- R2 v2 截图复刻闭环渲染（Playwright，可选 `[render]` extras）
-- npm/PyPI 一键分发（`uvx shadow-vision` / `npx shadow-vision`）
+- Initial release: `vision_ocr` / `vision_inspect` across four backends (Ollama / OpenAI-compatible / Anthropic / Gemini).
+- Automatic image compression + multi-crop tiling (R1).
+- User annotation awareness with `vision_annotate` (R3).
+- Layout analysis with `vision_layout` and screenshot reconstruction with `vision_reconstruct` (R2 v1 open-loop).
+- Built-in retries and fine-grained timeout breakdowns (R4).
+- Task-guided routing with `task` parameter (M2).
+- Remote URL image input with SSRF protection via `image_url` (F1).
+- Multi-image batch comparison with `vision_compare` (F3).
+- R2 v2 closed-loop screenshot reconstruction rendering (Playwright, optional `[render]` extra).
+- One-click npm/PyPI distribution (`uvx shadow-vision` / `npx shadow-vision`).
