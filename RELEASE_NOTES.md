@@ -1,31 +1,33 @@
 # Shadow Vision Release Notes
 
-本文档汇总 Shadow Vision（影瞳 · 开源 MCP 视觉服务）历史版本发布说明。
+**English** | [简体中文](./RELEASE_NOTES.zh-CN.md)
+
+This document summarizes the release notes for Shadow Vision (open-source MCP vision service).
 
 ---
 
 ## v0.1.1 - 2026-08-07
 
-> **类型**: 启动入口修复与模型响应性能优化
+> **Type**: Startup entry fix and model response performance optimization
 
-### 核心变更
-- **修复 MCP 进程启动命令**：修正模板配置中的入口命令 `vision-mcp` → `shadow-vision`，解决 `Failed to spawn` 崩溃。
-- **默认视觉模型升级**：默认模型调整为 `qwen3-vl:2b-instruct`（非思考版），大幅缩短首次响应时间并降低 token 消耗。
-- **新增 `VISION_OLLAMA_NO_THINK` 配置**：支持自动禁用 Qwen3 系列非必要的长思考过程，兼顾效率与识别精度。
-- **国内平台接入模板**：新增智谱 `glm-4v-flash` 等国内高性价比视觉 API 快速接入配置。
-- **品牌视觉对齐**：新增 07e 双瞳矢量 LOGO 与赛博视觉横幅。
+### Key Changes
+- **Fixed MCP startup command**: Corrected entry command in configuration templates from `vision-mcp` to `shadow-vision`, resolving `Failed to spawn` crashes.
+- **Upgraded default vision model**: Changed default model to `qwen3-vl:2b-instruct` (non-thinking version), significantly reducing initial response latency and token usage.
+- **Added `VISION_OLLAMA_NO_THINK` option**: Added support for automatically disabling unnecessary extended thinking processes on Qwen3 models, balancing speed and accuracy.
+- **Templates for Chinese API providers**: Added fast-start configuration templates for cost-effective domestic vision APIs including Zhipu `glm-4v-flash`.
+- **Brand visual alignment**: Added 07e double-eye vector logo and cyberpunk visual banner.
 
 ---
 
 ## v0.1.0 - 2026-08-05
 
-> **类型**: 初始开源版本发布
+> **Type**: Initial open-source release
 
-### 核心变更
-- **四大模型后端聚合**：全面原生兼容 Ollama（本地纯私有）、OpenAI-compatible（智谱/通义/DeepSeek/Kimi 等）、Anthropic 与 Google Gemini。
-- **全栈视觉 Tool 矩阵**：
-  - `vision_ocr`：高精度截图标注与文字提取；
-  - `vision_inspect`：界面结构与视觉元素排查；
-  - `vision_annotate`：用户画笔标注与红框焦点识别；
-  - `vision_layout` & `vision_reconstruct`：布局分析与代码还原。
-- **极简分发**：支持 `uvx shadow-vision` 零依赖开箱即用。
+### Key Changes
+- **Four aggregated model backends**: Comprehensive native compatibility with Ollama (local private), OpenAI-compatible (Zhipu / Tongyi / DeepSeek / Kimi, etc.), Anthropic, and Google Gemini.
+- **Full-stack vision tool matrix**:
+  - `vision_ocr`: High-precision screenshot annotation and text extraction;
+  - `vision_inspect`: UI structure and visual bug inspection;
+  - `vision_annotate`: User annotation and focus box recognition;
+  - `vision_layout` & `vision_reconstruct`: Layout analysis and code reconstruction.
+- **Minimalist distribution**: Zero-dependency out-of-the-box usage via `uvx shadow-vision`.
