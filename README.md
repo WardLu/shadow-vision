@@ -4,7 +4,7 @@
 
 # Shadow Vision
 
-**English** | [简体中文](./README.zh-CN.md) | [Shadow Lab](https://shadow.wang/zh/products/shadow-vision)
+**English** | [简体中文](./README.zh-CN.md) | [Shadow Lab](https://shadow.wang/en/products/shadow-vision)
 
 Give text-only LLMs a pair of eyes. Shadow Vision is an open-source MCP vision service that enables AI Agents to see, understand, and analyze real-world information through `vision_ocr`, `vision_inspect`, `vision_annotate`, `vision_layout`, `vision_reconstruct`, and `vision_compare` — without switching host models.
 
