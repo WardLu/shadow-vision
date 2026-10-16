@@ -296,7 +296,7 @@ uv run pytest
 </p>
 
 - **小红书 / 微博 / 抖音**：全网同名「Ward 的 AI 产品实战」—— [小红书](https://xhslink.cn/m/4W1NWyRrxv5) · [微博](https://weibo.com/u/8344390431) · [抖音](https://v.douyin.com/1y06PMohfoE/)
-- **产品主页**：[Shadow Nexus](https://www.shadow.wang/)
+- **产品主页**：[Shadow Lab](https://shadow.wang/zh)
 - **Email**：[wardlu@126.com](mailto:wardlu@126.com)
 
 > 可接 1v1 咨询和项目陪跑：产品诊断 · AI 实施 · 工作流 / Skill · 系统定制
