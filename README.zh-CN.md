@@ -4,7 +4,7 @@
 
 # 影瞳 · Shadow Vision
 
-[English](./README.md) | **简体中文**
+[English](./README.md) | **简体中文** | [Shadow Lab 官网](https://shadow.wang/zh/products/shadow-vision)
 
 给纯文本 LLM 添加一双眼睛。影瞳是一个开源 MCP 视觉服务，让 AI Agent 通过 `vision_ocr` / `vision_inspect` / `vision_annotate` / `vision_layout` / `vision_reconstruct` / `vision_compare` 看见、理解并分析真实世界的信息，无需切换宿主文本模型。
 
