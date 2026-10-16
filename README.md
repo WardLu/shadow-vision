@@ -296,7 +296,7 @@ If you are interested in B2B products, AI product development, supply chain digi
 </p>
 
 - **Xiaohongshu / Weibo / Douyin**: "Ward 的 AI 产品实战" across platforms — [Xiaohongshu](https://xhslink.cn/m/4W1NWyRrxv5) · [Weibo](https://weibo.com/u/8344390431) · [Douyin](https://v.douyin.com/1y06PMohfoE/)
-- **Product Homepage**: [Shadow Nexus](https://www.shadow.wang/)
+- **Product Homepage**: [Shadow Lab](https://shadow.wang/en)
 - **Email**: [wardlu@126.com](mailto:wardlu@126.com)
 
 > Open for 1-on-1 consulting and advisory: Product Diagnostics · AI Implementation · Workflows / Skills · Custom Solutions
